@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.courseWork.view;
+package com.EmergencyVehicleIS.view;
 
-import com.collegeapp.controller.datastructure.VehicleManager;
-import com.collegeapp.util.validationUtil;
-import com.courseWork.model.EmergencyVehicle;
+import com.EmergencyVehicleIS.controller.datastructure.VehicleManager;
+import com.EmergencyVehicleIS.util.validationUtil;
+import com.EmergencyVehicleIS.model.EmergencyVehicle;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -31,13 +31,6 @@ public class HomeScreen extends javax.swing.JFrame {
         new String[]{"Serial Number", "Vehicle Name", "Model Number", "Vehicle Type", "Availability Status", "Current Location", "Price"} // Column names
     );
     TbTable.setModel(tableModel); // Attach the model to the table
-    
-    VehicleManager.addVehicle(new EmergencyVehicle(1, "ModelA", "Ambulance", "Emergency", "Available", "Location1", 50000));
-    VehicleManager.addVehicle(new EmergencyVehicle(2, "ModelB", "Fire Truck", "Emergency", "Unavailable", "Location2", 70000));
-    
-    System.out.println(TbTable.getModel() instanceof DefaultTableModel); // Should print true
-
-
     populateVehicleTable(); // Populate the table with vehicle data
 }
 
@@ -57,8 +50,6 @@ public class HomeScreen extends javax.swing.JFrame {
         TAAboutUS = new javax.swing.JTextArea();
         lblAbout = new javax.swing.JLabel();
         lblAbouta = new javax.swing.JLabel();
-        lblOperations = new javax.swing.JLabel();
-        lblAbouta1 = new javax.swing.JLabel();
         pnlhome = new javax.swing.JPanel();
         pnlAmbulance = new javax.swing.JPanel();
         lblNumberAmbulance = new javax.swing.JLabel();
@@ -103,11 +94,12 @@ public class HomeScreen extends javax.swing.JFrame {
         tfRecentlyDispatched = new javax.swing.JTextField();
         tfServiceRequest = new javax.swing.JTextField();
         btnAddVehicle = new javax.swing.JButton();
-        btnViewvehicle = new javax.swing.JButton();
         btnDeleteVehicle = new javax.swing.JButton();
         cbLocation = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TbTable = new javax.swing.JTable();
+        btnUpdateVehicle = new javax.swing.JButton();
+        btnFetch = new javax.swing.JButton();
         pnlheader = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         lblEmergencyVehicleIS = new javax.swing.JLabel();
@@ -117,37 +109,28 @@ public class HomeScreen extends javax.swing.JFrame {
 
         tbAdminDashBoard.setBackground(new java.awt.Color(51, 255, 51));
 
-        pnlAboutUs.setBackground(new java.awt.Color(204, 255, 255));
+        pnlAboutUs.setBackground(new java.awt.Color(0, 0, 0));
         pnlAboutUs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TAAboutUS.setBackground(new java.awt.Color(0, 255, 255));
+        TAAboutUS.setBackground(new java.awt.Color(0, 0, 0));
         TAAboutUS.setColumns(20);
         TAAboutUS.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TAAboutUS.setForeground(new java.awt.Color(255, 255, 255));
         TAAboutUS.setRows(5);
-        TAAboutUS.setText("\nIn today's fast-paced world, timely and efficient emergency response can save countless lives.\nAt EVIS, we aim to revolutionize the way emergency vehicles operate by providing a cutting-edge, \ncentralized system for managing and monitoring emergency fleet operations.\nWith real-time tracking, seamless communication, and intelligent dispatching, our platform ensures that \nemergency vehicles reach their destinations faster and more effectively.\n By leveraging the latest in technology, EVIS plays a critical role in reducing response times and improving \noutcomes for emergency situations.\n\nJoin us in creating safer communities through innovation and dedication.");
+        TAAboutUS.setText("\nIn today's fast-paced world, timely and efficient emergency \nresponse can save countless lives.At EVIS, we aim to revolutionize\n the way emergency vehicles operate by providing a cutting-edge, \ncentralized system for managing and monitoring emergency fleet \noperations.With real-time tracking, seamless communication, and \nintelligent dispatching, our platform ensures that emergency vehicles\n reach their destinations faster and more effectively.By leveraging the \nlatest in technology, EVIS plays a critical role in reducing response \ntimes and improving outcomes for emergency situations.\n\nJoin us in creating safer communities through innovation and dedication.");
         SpAboutus.setViewportView(TAAboutUS);
 
-        pnlAboutUs.add(SpAboutus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 690, 220));
+        pnlAboutUs.add(SpAboutus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 480, 260));
 
         lblAbout.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblAbout.setForeground(new java.awt.Color(255, 255, 0));
         lblAbout.setText("About Us");
-        pnlAboutUs.add(lblAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        pnlAboutUs.add(lblAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 50));
 
         lblAbouta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAbouta.setForeground(new java.awt.Color(51, 255, 51));
         lblAbouta.setText("Reliable, Innovative, and Swift Emergency Response Solution");
-        pnlAboutUs.add(lblAbouta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
-
-        lblOperations.setForeground(new java.awt.Color(255, 255, 255));
-        lblOperations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/courseWork/resources/aboutusa.png"))); // NOI18N
-        lblOperations.setText("jLabel3");
-        pnlAboutUs.add(lblOperations, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 1150, 550));
-
-        lblAbouta1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblAbouta1.setText("Reliable, Innovative, and Swift Emergency Response Solution");
-        pnlAboutUs.add(lblAbouta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        pnlAboutUs.add(lblAbouta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 530, -1));
 
         tbAdminDashBoard.addTab("AboutUs", pnlAboutUs);
 
@@ -383,7 +366,7 @@ public class HomeScreen extends javax.swing.JFrame {
                         .addComponent(pnlFirefighters, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(179, 179, 179)
                         .addComponent(pnlPoliceCars, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
                         .addComponent(pnlAmbulance, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(87, 87, 87))
         );
@@ -462,13 +445,6 @@ public class HomeScreen extends javax.swing.JFrame {
             }
         });
 
-        btnViewvehicle.setText("Viewvehicle");
-        btnViewvehicle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewvehicleActionPerformed(evt);
-            }
-        });
-
         btnDeleteVehicle.setText("Delete Vehicle");
         btnDeleteVehicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -491,67 +467,88 @@ public class HomeScreen extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TbTable);
 
+        btnUpdateVehicle.setText("Update Vehicles");
+        btnUpdateVehicle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateVehicleActionPerformed(evt);
+            }
+        });
+
+        btnFetch.setText("Fetch");
+        btnFetch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFetchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
         pnlAdmin.setLayout(pnlAdminLayout);
         pnlAdminLayout.setHorizontalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSerialNumber)
-                    .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSerialNumber)
+                            .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))
+                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                        .addComponent(btnAddVehicle)
+                        .addGap(59, 59, 59)))
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
                         .addComponent(lblModelNumber)
                         .addGap(33, 33, 33)
                         .addComponent(lblEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addComponent(tfModelNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(tfEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfModelNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFetch))
+                        .addGap(48, 48, 48)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUpdateVehicle)
+                            .addComponent(tfEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVehicleType))
-                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(lblAvailabilityStatus)
-                        .addGap(30, 30, 30)
-                        .addComponent(lblCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbAvailabilityStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblVehicleType))
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(lblAvailabilityStatus)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbAvailabilityStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDispatchedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblRecentlyDispatched, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(tfDispatchedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(tfRecentlyDispatched, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27))))
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDispatchedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblRecentlyDispatched, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(tfDispatchedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(tfRecentlyDispatched, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(tfServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-            .addGroup(pnlAdminLayout.createSequentialGroup()
-                .addComponent(btnAddVehicle)
-                .addGap(46, 46, 46)
-                .addComponent(btnViewvehicle)
-                .addGap(40, 40, 40)
-                .addComponent(btnDeleteVehicle)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btnDeleteVehicle)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -589,11 +586,12 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddVehicle)
-                    .addComponent(btnViewvehicle)
+                    .addComponent(btnUpdateVehicle)
+                    .addComponent(btnFetch)
                     .addComponent(btnDeleteVehicle))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         tbAdminDashBoard.addTab("Admin Dashboard", pnlAdmin);
@@ -697,9 +695,9 @@ private void populateVehicleTable() {
     }
 }
 
- 
+// Method to create an EmergencyVehicle object using user inputs and collect all error messages in string builder
 private EmergencyVehicle createEmergencyVehicleFromInputs() {
-    // Initialize a StringBuilder to collect all error messages
+    // Initializing a StringBuilder to collect all error messages
     StringBuilder errorMessages = new StringBuilder();
 
     // Get inputs from text fields
@@ -772,6 +770,7 @@ private EmergencyVehicle createEmergencyVehicleFromInputs() {
     return new EmergencyVehicle(serialNumber, modelNumber, emergencyVehicleName, vehicleType, availabilityStatus, location, price);
 }
     
+//Method to clear all the textfields and reset the combobox
 private void clearInputFields() {
     // Clear all text fields
     tfSerialNumber.setText("");
@@ -780,67 +779,15 @@ private void clearInputFields() {
     tfPrice.setText("");
 
     // Reset combo boxes to the first item (assuming the first item is a placeholder)
-    cbVehicleType.setSelectedIndex(0);  // Assuming index 0 is a placeholder (e.g., "Select Vehicle Type")
-    cbAvailabilityStatus.setSelectedIndex(0);  // Assuming index 0 is a placeholder (e.g., "Select Availability Status")
-    cbLocation.setSelectedIndex(0);// Assuming index 0 is a placeholder (e.g., "Select Location Status")
+    cbVehicleType.setSelectedIndex(0);  
+    cbAvailabilityStatus.setSelectedIndex(0); 
+    cbLocation.setSelectedIndex(0);
 }
 
-
-/*private String validateFields() {
-    // Check if serial number is empty
-    if (tfSerialNumber.getText().trim().isEmpty()) {
-        return "Serial numbera cannot be empty."; // Return error message if empty
-    }
-
-    // Check if model number is empty
-    if (tfModelNumber.getText().trim().isEmpty()) {
-        return "Model number cannot be empty."; // Return error message if empty
-    }
-
-    // Check if emergency vehicle name is empty
-    if (tfEmergencyVehicleName.getText().trim().isEmpty()) {
-        return "Vehicle name cannot be empty."; // Return error message if empty
-    }
-
-    // Check if price is empty
-    if (tfPrice.getText().trim().isEmpty()) {
-        return "Price cannot be empty."; // Return error message if empty
-    }
-
-    // Check if vehicle type is valid
-    String vehicleType = (String) cbVehicleType.getSelectedItem();
-    if (vehicleType == null || vehicleType.trim().isEmpty()) {
-        return "Please select a valid vehicle type."; // Return error message if not valid
-    }
-
-    // Check if availability status is valid
-    String availabilityStatus = (String) cbAvailabilityStatus.getSelectedItem();
-    if (availabilityStatus == null || availabilityStatus.trim().isEmpty()) {
-        return "Please select a valid availability status."; // Return error message if not valid
-    }
-
-    // Check if location is valid
-    String location = (String) cbLocation.getSelectedItem();
-    if (location == null || location.trim().isEmpty()) {
-        return "Please select a valid location."; // Return error message if not valid
-    }
-
-     // Return all error messages as a single string
-    return  null;
-}*/
-
-
-
-
+//Method to add the vehicle information in the arrrylist
     private void btnAddVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVehicleActionPerformed
     // Collect all validation errors at once
     StringBuilder errorMessages = new StringBuilder();
-
-    // Validate fields and collect errors
-    /*String validationMessage = validateFields();
-    if (validationMessage != null) {
-        errorMessages.append(validationMessage).append("\n");
-    }*/
 
     // Validate emergency vehicle creation inputs
     EmergencyVehicle newVehicle = null; // Initialize the vehicle object
@@ -857,60 +804,40 @@ private void clearInputFields() {
         return; // Stop further execution
     }
 
+    // Check for duplicate serial numbers
+    for (EmergencyVehicle ev : VehicleManager.getAllVehicles()) { 
+        if (ev.getSerialNumber() == newVehicle.getSerialNumber()) {
+            // Append an error message for duplicate serial number
+            errorMessages.append("A vehicle with serial number ").append(newVehicle.getSerialNumber()).append(" already exists.\n");
+            break; // Exit the loop once a duplicate is found
+        }
+    }
+
+    // If there are errors after serial number check, show them and stop execution
+    if (errorMessages.length() > 0) {
+        JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
+        return; // Stop further execution
+    }
+
     // Proceed to add the vehicle only if all validations pass
     try {
-        VehicleManager.addVehicle(newVehicle); 
+        VehicleManager.addVehicle(newVehicle);
 
         // Clear the input fields after successful addition
         clearInputFields();
 
         // Optionally, show a success message
         JOptionPane.showMessageDialog(null, "Emergency Vehicle Added Successfully!");
+        populateVehicleTable();
     } catch (Exception ex) {
         // Handle unexpected errors during addition
         JOptionPane.showMessageDialog(null, "An error occurred while adding the vehicle: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     
-        populateVehicleTable();
-
-
-
     }    }//GEN-LAST:event_btnAddVehicleActionPerformed
 
 
 
-  
-    private void btnViewvehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewvehicleActionPerformed
-// Retrieve the list of emergency vehicles
-    ArrayList<EmergencyVehicle> vehicles = VehicleManager.getAllVehicles();
-
-    // Check if the list is empty
-    if (vehicles.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "No vehicles to display.", "View Vehicles", JOptionPane.INFORMATION_MESSAGE);
-        return;
-    }
-
-    // Create a data model for JTable
-    String[] columnNames = {"Serial Number", "Model Number", "Vehicle Name", "Type", "Location", "Availability", "Price"};
-    Object[][] data = new Object[vehicles.size()][columnNames.length];
-
-    for (int i = 0; i < vehicles.size(); i++) {
-        EmergencyVehicle vehicle = vehicles.get(i);
-        data[i][0] = vehicle.getSerialNumber();
-        data[i][1] = vehicle.getModelNumber();
-        data[i][2] = vehicle.getEmergencyVehicleName();
-        data[i][3] = vehicle.getVehicleType();
-        data[i][4] = vehicle.getCurrentLocation();
-        data[i][5] = vehicle.getAvailabilityStatus();
-        data[i][6] = vehicle.getPrice();
-    }
-
-    // Display the data in a JTable
-    JTable table = new JTable(data, columnNames);
-    JScrollPane scrollPane = new JScrollPane(table);
-
-    // Show the table in a dialog
-    JOptionPane.showMessageDialog(null, scrollPane, "View Vehicles", JOptionPane.PLAIN_MESSAGE);    }//GEN-LAST:event_btnViewvehicleActionPerformed
-
+  //Method to delete the vehicle information
     private void btnDeleteVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVehicleActionPerformed
     String serialNumberInput = tfSerialNumber.getText().trim(); // Get the input from the user
 
@@ -922,9 +849,12 @@ private void clearInputFields() {
     try {
         int serialNumber = Integer.parseInt(serialNumberInput); // Convert to integer
 
-        boolean isDeleted = VehicleManager.deleteVehicle(serialNumber);
+        boolean isDeleted = VehicleManager.deleteVehicle(serialNumber); // Delete vehicle from the ArrayList
 
         if (isDeleted) {
+            // Refresh the table to reflect the deletion
+            populateVehicleTable();
+
             JOptionPane.showMessageDialog(this, "Vehicle deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             clearInputFields(); // Clear the input fields
         } else {
@@ -932,18 +862,8 @@ private void clearInputFields() {
         }
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid serial number. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+    
     }    }//GEN-LAST:event_btnDeleteVehicleActionPerformed
-
-    /*public void deleteVehicleFromTable(int serialNumber) {
-    boolean isDeleted = VehicleManager.deleteVehicle(serialNumber);
-
-    if (isDeleted) {
-        populateVehicleTable(); // Refresh the table
-        System.out.println("Vehicle deleted successfully.");
-    } else {
-        System.out.println("Vehicle not found.");
-    }
-}*/
 
     private void tfReview1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfReview1ActionPerformed
         // TODO add your handling code here:
@@ -956,7 +876,68 @@ private void clearInputFields() {
     private void tfReview3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfReview3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfReview3ActionPerformed
- 
+
+    
+    // Method to update the vehicle according to the serial number
+    private void btnUpdateVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateVehicleActionPerformed
+try {
+        // Validate and create a new EmergencyVehicle object from inputs
+        EmergencyVehicle updatedVehicle = createEmergencyVehicleFromInputs();
+
+        // Find and update the vehicle in the ArrayList
+        boolean isUpdated = VehicleManager.updateVehicle(updatedVehicle);
+
+        if (isUpdated) {
+            // Refresh the table
+            populateVehicleTable();
+
+            JOptionPane.showMessageDialog(this, "Vehicle details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            clearInputFields(); // Clear the input fields
+            btnUpdateVehicle.setEnabled(false); // Disable update button
+        } else {
+            JOptionPane.showMessageDialog(this, "Vehicle not found. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Validation Errors", JOptionPane.ERROR_MESSAGE);
+    }    }//GEN-LAST:event_btnUpdateVehicleActionPerformed
+
+    
+    // Method to fetch the vehicle data to edit 
+    private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
+    String serialNumberInput = tfSerialNumber.getText().trim(); // Get the serial number input
+
+    if (serialNumberInput.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter the serial number to fetch the vehicle data.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        int serialNumber = Integer.parseInt(serialNumberInput); // Convert to integer
+
+        // Find the vehicle in the ArrayList
+        EmergencyVehicle vehicleFound = VehicleManager.findVehicleBySerialNumber(serialNumber);
+
+        if (vehicleFound == null) {
+            JOptionPane.showMessageDialog(this, "Vehicle not found. Please check the serial number.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Populate the input fields with the vehicle's details
+        tfSerialNumber.setText(String.valueOf(vehicleFound.getSerialNumber()));
+        tfModelNumber.setText(vehicleFound.getModelNumber());
+        tfEmergencyVehicleName.setText(vehicleFound.getEmergencyVehicleName());
+        cbVehicleType.setSelectedItem(vehicleFound.getVehicleType());
+        cbAvailabilityStatus.setSelectedItem(vehicleFound.getAvailabilityStatus());
+        cbLocation.setSelectedItem(vehicleFound.getCurrentLocation());
+        tfPrice.setText(String.valueOf(vehicleFound.getPrice()));
+
+        // Enable the update button
+        btnUpdateVehicle.setEnabled(true);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Invalid serial number. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);    }//GEN-LAST:event_btnFetchActionPerformed
+    }
+    
+    
     private void logoutAction() {
         // Close the HomeScreen
         dispose();
@@ -1006,8 +987,9 @@ private void clearInputFields() {
     private javax.swing.JTable TbTable;
     private javax.swing.JButton btnAddVehicle;
     private javax.swing.JButton btnDeleteVehicle;
+    private javax.swing.JButton btnFetch;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnViewvehicle;
+    private javax.swing.JButton btnUpdateVehicle;
     private javax.swing.JComboBox<String> cbAvailabilityStatus;
     private javax.swing.JComboBox<String> cbLocation;
     private javax.swing.JComboBox<String> cbVehicleType;
@@ -1016,7 +998,6 @@ private void clearInputFields() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblAbouta;
-    private javax.swing.JLabel lblAbouta1;
     private javax.swing.JLabel lblAmbulanceNumber;
     private javax.swing.JLabel lblAvailabilityStatus;
     private javax.swing.JLabel lblAvailableAmbulance;
@@ -1036,7 +1017,6 @@ private void clearInputFields() {
     private javax.swing.JLabel lblOfflineAmbulance;
     private javax.swing.JLabel lblOfflineFirefighters1;
     private javax.swing.JLabel lblOfflinePolice1;
-    private javax.swing.JLabel lblOperations;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblRecentlyDispatched;
     private javax.swing.JLabel lblSerialNumber;

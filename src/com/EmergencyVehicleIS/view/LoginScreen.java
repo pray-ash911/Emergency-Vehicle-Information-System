@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.courseWork.view;
+package com.EmergencyVehicleIS.view;
 import javax.swing.JOptionPane;
 
 
@@ -61,7 +61,6 @@ public class LoginScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(554, 463));
         setMinimumSize(new java.awt.Dimension(554, 463));
         setSize(new java.awt.Dimension(554, 463));
 

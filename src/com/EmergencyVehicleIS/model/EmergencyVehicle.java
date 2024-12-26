@@ -1,4 +1,4 @@
-package com.courseWork.model;
+package com.EmergencyVehicleIS.model;
 
 public class EmergencyVehicle {
     private int serialNumber;
@@ -9,7 +9,6 @@ public class EmergencyVehicle {
     private String currentLocation;
     private int price;
     
-    // New Fields for Dispatch and Service Requests
     private boolean isDispatched; // Indicates if the vehicle is dispatched
     private boolean hasServiceRequest; // Indicates if there's a pending service request
 

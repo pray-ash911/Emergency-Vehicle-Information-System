@@ -1,4 +1,4 @@
-package com.collegeapp.util;
+package com.EmergencyVehicleIS.util;
 
 import javax.swing.JComboBox;
 
@@ -53,9 +53,8 @@ public class validationUtil {
         return null; // Input is valid
     }
 
-    // Since brand name is not used, this method is removed
 
-    // Validate price (integer, greater than 5000)
+    // Validate price (integer, greater than 1000)
 public static String validatePrice(String input) {
     if (input == null || input.trim().isEmpty()) {
         return "Prices cannot be empty."; // Check for empty input
@@ -119,6 +118,8 @@ public static String validateAvailabilityStatus(JComboBox<String> statusComboBox
     // Return an error message if the availability status is invalid
     return "Invalid availability status. Please choose from: Available, Unavailable, or In Maintenance.";
 }
+
+// Validate current Location (for ComboBox selection)
 public static String validateLocation(JComboBox<String> cbLocation) {
     // Get the selected item from ComboBox
     String location = (String) cbLocation.getSelectedItem();

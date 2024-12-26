@@ -4,7 +4,7 @@
  */
 package collegeapps;
 
-import com.courseWork.view.LoginScreen;
+import com.EmergencyVehicleIS.view.LoginScreen;
 
 /**
  *

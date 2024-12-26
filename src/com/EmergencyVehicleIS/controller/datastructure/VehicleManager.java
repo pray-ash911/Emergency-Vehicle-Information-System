@@ -1,6 +1,6 @@
-package com.collegeapp.controller.datastructure;
+package com.EmergencyVehicleIS.controller.datastructure;
 
-import com.courseWork.model.EmergencyVehicle;
+import com.EmergencyVehicleIS.model.EmergencyVehicle;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -36,9 +36,27 @@ public class VehicleManager {
     }
     return false; // Vehicle not found
 }
+   // Method to update the details of an existing emergency vehicle
+public static boolean updateVehicle(EmergencyVehicle updatedVehicle) {
+    for (int i = 0; i < emergencyVehicles.size(); i++) { 
+        if (emergencyVehicles.get(i).getSerialNumber() == updatedVehicle.getSerialNumber()) {
+            emergencyVehicles.set(i, updatedVehicle); 
+            return true;
+        }
+    }
+    return false; // Vehicle not found
+}
 
-    
-    
+   // Method to find the existing emergency vehicle by its serial number
+public static EmergencyVehicle findVehicleBySerialNumber(int serialNumber) {
+    for (EmergencyVehicle vehicle : emergencyVehicles) { 
+        if (vehicle.getSerialNumber() == serialNumber) {
+            return vehicle; // Return the matching vehicle
+        }
+    }
+    return null; // Return null if no vehicle is found
+}
+
 
     // Method to add dispatch record
     public static void addDispatchRecord(String record) {
