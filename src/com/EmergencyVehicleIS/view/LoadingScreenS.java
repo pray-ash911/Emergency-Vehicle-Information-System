@@ -13,14 +13,14 @@ import javax.swing.Timer;
  *
  * @author hp
  */
-public class sampleloading extends javax.swing.JFrame {
+public class LoadingScreenS extends javax.swing.JFrame {
      private Timer timer; // Timer to update progress bar
      private int progress = 0; // Progress value for the loading bar
 
     /**
-     * Creates new form sampleloading
+     * Creates new form LoadingScreenS
      */
-    public sampleloading() {
+    public LoadingScreenS() {
         initComponents();
         this.setTitle("Loading Screen");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,20 +131,21 @@ public class sampleloading extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(sampleloading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(sampleloading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(sampleloading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(sampleloading.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new sampleloading().setVisible(true);
+                new LoadingScreenS().setVisible(true);
             }
         });
     }

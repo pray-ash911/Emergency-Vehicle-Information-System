@@ -29,6 +29,7 @@ public class HomeScreen extends javax.swing.JFrame {
     DefaultTableModel tableModel = new DefaultTableModel(
         new Object[][]{}, // Initial data (empty)
         new String[]{"Serial Number", "Vehicle Name", "Model Number", "Vehicle Type", "Availability Status", "Current Location", "Price"} // Column names
+        
     );
     TbTable.setModel(tableModel); // Attach the model to the table
     populateVehicleTable(); // Populate the table with vehicle data
@@ -457,6 +458,17 @@ public class HomeScreen extends javax.swing.JFrame {
         TbTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "QSRE234", "Falcon23", "Firetruck", "1100", "Available", "Basundhara"},
+                {"2", "", "", null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null}
@@ -487,23 +499,26 @@ public class HomeScreen extends javax.swing.JFrame {
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
-                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSerialNumber)
-                            .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))
+                    .addComponent(btnAddVehicle)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addComponent(btnAddVehicle)
-                        .addGap(59, 59, 59)))
+                        .addContainerGap()
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSerialNumber))))
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addComponent(lblModelNumber)
-                        .addGap(33, 33, 33)
+                        .addGap(173, 173, 173)
                         .addComponent(lblEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlAdminLayout.createSequentialGroup()
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfModelNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFetch))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(btnFetch))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblModelNumber)
+                                    .addComponent(tfModelNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(48, 48, 48)
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnUpdateVehicle)
@@ -513,7 +528,9 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addGroup(pnlAdminLayout.createSequentialGroup()
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblVehicleType))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblVehicleType)))
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlAdminLayout.createSequentialGroup()
                                 .addGap(27, 27, 27)
@@ -537,11 +554,11 @@ public class HomeScreen extends javax.swing.JFrame {
                                 .addComponent(lblRecentlyDispatched, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 10, Short.MAX_VALUE))
                             .addGroup(pnlAdminLayout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addComponent(tfDispatchedVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
+                                .addGap(29, 29, 29)
                                 .addComponent(tfRecentlyDispatched, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tfServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -551,8 +568,8 @@ public class HomeScreen extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         pnlAdminLayout.setVerticalGroup(
             pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +608,7 @@ public class HomeScreen extends javax.swing.JFrame {
                     .addComponent(btnDeleteVehicle))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         tbAdminDashBoard.addTab("Admin Dashboard", pnlAdmin);
@@ -677,8 +694,9 @@ public class HomeScreen extends javax.swing.JFrame {
 private void populateVehicleTable() {
     // Get the DefaultTableModel from the table
     DefaultTableModel tableModel = (DefaultTableModel) TbTable.getModel();
-    tableModel.setRowCount(0); // Clear existing rows
-    
+    tableModel.setRowCount(0);
+    // Add example data to the table
+    tableModel.addRow(new Object[]{"1", "Falcon23", "QSRE234", "Firetruck", "Available", "Basundhara", 1100}); tableModel.addRow(new Object[]{"2", "Eagle47", "QSPD345", "Police Car", "Unavailable", "Gongabu", 1200}); tableModel.addRow(new Object[]{"3", "Medic21", "QSAE456", "Ambulance", "Available", "Kamalpokhari", 1300}); tableModel.addRow(new Object[]{"4", "Rescue34", "QSRT567", "Firetruck", "Unavailable", "Thamel", 1500});
     // Add rows to the table using data from the ArrayList
     for (EmergencyVehicle vehicle : VehicleManager.getAllVehicles()) {
         tableModel.addRow(new Object[]{
@@ -691,6 +709,7 @@ private void populateVehicleTable() {
             vehicle.getPrice()
         });
         System.out.println(VehicleManager.getAllVehicles());
+        
 
     }
 }
