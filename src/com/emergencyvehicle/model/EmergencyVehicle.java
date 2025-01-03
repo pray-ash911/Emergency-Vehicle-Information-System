@@ -1,4 +1,9 @@
-package com.EmergencyVehicleIS.model;
+package com.emergencyvehicle.model;
+
+/**  
+ * * Prayash Rawal 
+ * LMU ID: 23056551
+ */
 
 public class EmergencyVehicle {
     private int serialNumber;

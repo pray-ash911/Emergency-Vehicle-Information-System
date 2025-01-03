@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.EmergencyVehicleIS.view;
+package com.emergencyvehicle.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,21 +10,26 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 /**
- *
- * @author hp
+ * LoadingScreen class for displaying a loading screen with progress bar.
+ * 
+ * Prayash Rawal
+ * LMU ID: 23056551
+ * 
+ * The LoadingScreen class shows a progress bar that updates over time and switches to the LoginScreen once loading is complete.
  */
-public class LoadingScreenS extends javax.swing.JFrame {
+public class LoadingScreen extends javax.swing.JFrame {
      private Timer timer; // Timer to update progress bar
      private int progress = 0; // Progress value for the loading bar
 
     /**
      * Creates new form LoadingScreenS
      */
-    public LoadingScreenS() {
+    public LoadingScreen() {
         initComponents();
         this.setTitle("Loading Screen");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         startLoading();
+        this.setLocationRelativeTo(null);
 
 
     }
@@ -45,14 +50,15 @@ public class LoadingScreenS extends javax.swing.JFrame {
         jProgressBarloading = new javax.swing.JProgressBar();
         lblLoadingScreen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlLoading.setBackground(new java.awt.Color(0, 0, 0));
         pnlLoading.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblLoadingImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/courseWork/resources/ambulancelogop.png"))); // NOI18N
-        pnlLoading.add(lblLoadingImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 520, 270));
+        lblLoadingImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/Actualambulance.png"))); // NOI18N
+        pnlLoading.add(lblLoadingImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 360, 270));
 
         lblEmergency.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblEmergency.setForeground(new java.awt.Color(255, 0, 51));
@@ -63,7 +69,7 @@ public class LoadingScreenS extends javax.swing.JFrame {
         lblINFORMATIONSYSTEM.setForeground(new java.awt.Color(51, 255, 51));
         lblINFORMATIONSYSTEM.setText("INFORMATION SYSTEM");
         pnlLoading.add(lblINFORMATIONSYSTEM, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, -1, -1));
-        pnlLoading.add(jProgressBarloading, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 1000, 20));
+        pnlLoading.add(jProgressBarloading, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 1010, 20));
 
         lblLoadingScreen.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblLoadingScreen.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,9 +77,12 @@ public class LoadingScreenS extends javax.swing.JFrame {
         pnlLoading.add(lblLoadingScreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 590, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Loading...");
-        pnlLoading.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 550, -1, -1));
+        pnlLoading.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
+
+        jLabel2.setText("jLabel2");
+        pnlLoading.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 90, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,7 +99,10 @@ public class LoadingScreenS extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Starts the loading process by updating the progress bar and label.
+     */
     private void startLoading() {
         timer = new Timer(50, new ActionListener() { // Update every 50ms
             
@@ -131,27 +143,30 @@ public class LoadingScreenS extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoadingScreenS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoadingScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoadingScreenS().setVisible(true);
+                new LoadingScreen().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBarloading;
     private javax.swing.JLabel lblEmergency;
     private javax.swing.JLabel lblINFORMATIONSYSTEM;
