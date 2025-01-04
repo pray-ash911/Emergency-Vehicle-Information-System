@@ -10,7 +10,6 @@ import javax.swing.JComboBox;
  */
 public class ValidationUtil {
 
-    // Validate serial number (integer)
     /**
      * Validates if the input string is a valid serial number.
      *
@@ -19,7 +18,7 @@ public class ValidationUtil {
      */
     public static String validateSerialNumber(String input) {
         if (input == null || input.trim().isEmpty()) {
-            return "Serial numbers cannot be empty."; // Check for empty input
+            return "Serial number cannot be empty."; // Check for empty input
         }
         try {
             int number = Integer.parseInt(input.trim()); // Parse input as an integer
@@ -32,7 +31,6 @@ public class ValidationUtil {
         return null; // Input is valid
     }
 
-    // Validate model number
     /**
      * Validates if the model number is valid.
      *
@@ -41,15 +39,14 @@ public class ValidationUtil {
      */
     public static String validateModelNumber(String modelNumber) {
         if (modelNumber == null || modelNumber.trim().isEmpty()) {
-            return "Model numbers cannot be empty.";
+            return "Model name cannot be empty.";
         }
         if (!modelNumber.trim().matches("[a-zA-Z0-9]+")) {
-            return "Model number must be alphanumeric.";
+            return "Model name must be alphanumeric.";
         }
         return null; // Input is valid
     }
 
-    // Validate vehicle name
     /**
      * Validates if the vehicle name is valid.
      *
@@ -58,15 +55,14 @@ public class ValidationUtil {
      */
     public static String validateVehicleName(String vehicleName) {
         if (vehicleName == null || vehicleName.trim().isEmpty()) {
-            return "Vehicle names cannot be empty.";
+            return "Vehicle number cannot be empty.";
         }
         if (!vehicleName.trim().matches("[a-zA-Z0-9 ]+")) { // Allow spaces for vehicle names like "Ambulance 101"
-            return "Vehicle name must be alphanumeric and can contain spaces.";
+            return "Vehicle number must be alphanumeric and can contain spaces.";
         }
         return null; // Input is valid
     }
 
-    // Validate price (integer, greater than 1000)
     /**
      * Validates if the price is valid.
      *
@@ -75,7 +71,7 @@ public class ValidationUtil {
      */
     public static String validatePrice(String input) {
         if (input == null || input.trim().isEmpty()) {
-            return "Prices cannot be empty."; // Check for empty input
+            return "Price cannot be empty."; // Check for empty input
         }
         try {
             int price = Integer.parseInt(input.trim()); // Parse the input as an integer
@@ -88,7 +84,6 @@ public class ValidationUtil {
         return null; // Input is valid
     }
 
-    // Validate Emergency Vehicle Type (for ComboBox selection)
     /**
      * Validates if the emergency vehicle type selected from ComboBox is valid.
      *
@@ -118,7 +113,6 @@ public class ValidationUtil {
         return "Invalid vehicle type. Please choose a valid emergency vehicle type.";
     }
 
-    // Validate Availability Status (for ComboBox selection)
     /**
      * Validates if the availability status selected from ComboBox is valid.
      *
@@ -148,7 +142,6 @@ public class ValidationUtil {
         return "Invalid availability status. Please choose from: Available, Unavailable.";
     }
 
-    // Validate current Location (for ComboBox selection)
     /**
      * Validates if the location selected from ComboBox is valid.
      *

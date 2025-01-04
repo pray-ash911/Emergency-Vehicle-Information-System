@@ -27,10 +27,12 @@ public class HomeScreen extends javax.swing.JFrame {
     public HomeScreen() {
     initComponents();// Initialize all GUI components
     this.setLocationRelativeTo(null);
+    btnUpdateVehicle.setEnabled(false);// At first Update button s disabled
+
     // Set the DefaultTableModel for the table
     DefaultTableModel tableModel = new DefaultTableModel(
         new Object[][]{}, // Initial data (empty)
-        new String[]{"Serial Number", "Model Number", "Vehicle Name", "Vehicle Type", "Availability Status", "Current Location", "Price","Service Request","Dispatched Vehicle"} // Column names
+        new String[]{"Serial Number", "Model Name", "Vehicle Number", "Vehicle Type", "Availability Status", "Current Location", "Price","Service Request","Dispatched Vehicle"} // Column names
         
     );
     tblEmergencyVehicles.setModel(tableModel); // Attach the model to the table
@@ -52,6 +54,7 @@ public class HomeScreen extends javax.swing.JFrame {
         TAAboutUS = new javax.swing.JTextArea();
         lblAbout = new javax.swing.JLabel();
         lblAbouta = new javax.swing.JLabel();
+        lblAboutUsLogo = new javax.swing.JLabel();
         pnlhome = new javax.swing.JPanel();
         pnlAmbulance = new javax.swing.JPanel();
         lblNumberAmbulance = new javax.swing.JLabel();
@@ -62,9 +65,6 @@ public class HomeScreen extends javax.swing.JFrame {
         lblFirefightersNumber = new javax.swing.JLabel();
         lblAvailableFire = new javax.swing.JLabel();
         pnlPoliceCars = new javax.swing.JPanel();
-        lblNumberPoliceCarsAvailable = new javax.swing.JLabel();
-        lblNumberPoliceAvailable = new javax.swing.JLabel();
-        lblAvailablePolice1 = new javax.swing.JLabel();
         lblSlogan = new javax.swing.JLabel();
         lblFireTruck1 = new javax.swing.JLabel();
         lblAmbulance2 = new javax.swing.JLabel();
@@ -73,9 +73,6 @@ public class HomeScreen extends javax.swing.JFrame {
         lblPoliceCar2 = new javax.swing.JLabel();
         lblFireTruck2 = new javax.swing.JLabel();
         pnlAmbulance1 = new javax.swing.JPanel();
-        lblNumberAmbulance1 = new javax.swing.JLabel();
-        lblAmbulanceNumber1 = new javax.swing.JLabel();
-        lblAvailableAmbulance1 = new javax.swing.JLabel();
         pnlAmbulance2 = new javax.swing.JPanel();
         lblNumberAmbulance2 = new javax.swing.JLabel();
         lblAmbulanceNumber2 = new javax.swing.JLabel();
@@ -84,6 +81,12 @@ public class HomeScreen extends javax.swing.JFrame {
         lblNumberPoliceCarsAvailable1 = new javax.swing.JLabel();
         lblNumberPoliceAvailable1 = new javax.swing.JLabel();
         lblAvailablePolice2 = new javax.swing.JLabel();
+        lblNumberPoliceCarsAvailable = new javax.swing.JLabel();
+        lblNumberPoliceAvailable = new javax.swing.JLabel();
+        lblAvailablePolice1 = new javax.swing.JLabel();
+        lblNumberAmbulance1 = new javax.swing.JLabel();
+        lblAmbulanceNumber1 = new javax.swing.JLabel();
+        lblAvailableAmbulance1 = new javax.swing.JLabel();
         pnlAdmin = new javax.swing.JPanel();
         lblSerialNumber = new javax.swing.JLabel();
         lblModelNumber = new javax.swing.JLabel();
@@ -120,6 +123,9 @@ public class HomeScreen extends javax.swing.JFrame {
         tfEmergencyCalls = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         tfEmail = new javax.swing.JTextArea();
+        lblSearch = new javax.swing.JLabel();
+        btnSearch = new javax.swing.JButton();
+        tfSearch = new javax.swing.JTextField();
         pnlheader = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         lblEmergencyVehicleIS = new javax.swing.JLabel();
@@ -127,36 +133,36 @@ public class HomeScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tbAdminDashBoard.setBackground(new java.awt.Color(204, 0, 204));
+        tbAdminDashBoard.setBackground(new java.awt.Color(204, 255, 255));
 
-        pnlAboutUs.setBackground(new java.awt.Color(0, 0, 0));
+        pnlAboutUs.setBackground(new java.awt.Color(204, 204, 255));
         pnlAboutUs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TAAboutUS.setBackground(new java.awt.Color(0, 0, 0));
+        TAAboutUS.setBackground(new java.awt.Color(204, 204, 255));
         TAAboutUS.setColumns(20);
         TAAboutUS.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TAAboutUS.setForeground(new java.awt.Color(255, 255, 255));
         TAAboutUS.setRows(5);
-        TAAboutUS.setText("\nIn today's fast-paced world, timely and efficient emergency \nresponse can save countless lives.At EVIS, we aim to revolutionize\n the way emergency vehicles operate by providing a cutting-edge, \ncentralized system for managing and monitoring emergency fleet \noperations.With real-time tracking, seamless communication, and \nintelligent dispatching, our platform ensures that emergency vehicles\n reach their destinations faster and more effectively.By leveraging the \nlatest in technology, EVIS plays a critical role in reducing response \ntimes and improving outcomes for emergency situations.\n\nJoin us in creating safer communities through innovation and dedication.");
+        TAAboutUS.setText("\nIn today's fast-paced world, timely and efficient emergency response can save countless lives.At EVIS, we aim to revolutionize \nthe way emergency vehicles operate by providing a cutting-edge, centralized system for managing and monitoring emergency \nfleet operations.With real-time tracking, seamless communication, and intelligent dispatching, our platform ensures emergency \nvehicles reach their destinations faster and more effectively.By leveraging the latest in technology, EVIS plays a critical role in reducing\nresponse times and improving outcomes for emergency situations.By harnessing the power of cutting-edge technology,\nEVIS is at the forefront of revolutionizing emergency response systems, ultimately contributing to safer and more resilient communities. \nThis commitment to excellence and innovation positions EVIS as a critical player in improving outcomes for emergencies worldwide\nBy harnessing the power of cutting-edge technology, EVIS is at the forefront of revolutionizing emergency response systems, ultimately\ncontributing to safer and more resilient communities. This commitment to excellence and innovation positions EVIS as a critical player in \nimproving outcomes for emergencies worldwide. Through our relentless focus on innovation and efficiency, we aim to set new standards\nin emergency vehicle operations, ensuring that help is always just around the corner.\n\n\nJoin us in creating safer communities through innovation and dedication.\n");
         SpAboutus.setViewportView(TAAboutUS);
 
-        pnlAboutUs.add(SpAboutus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 580, 260));
+        pnlAboutUs.add(SpAboutus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 890, 350));
 
-        lblAbout.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblAbout.setForeground(new java.awt.Color(255, 255, 0));
+        lblAbout.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblAbout.setText("About Us");
-        pnlAboutUs.add(lblAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, 50));
+        pnlAboutUs.add(lblAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 200, 50));
 
         lblAbouta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAbouta.setForeground(new java.awt.Color(51, 255, 51));
         lblAbouta.setText("Reliable, Innovative, and Swift Emergency Response Solution");
-        pnlAboutUs.add(lblAbouta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 530, -1));
+        pnlAboutUs.add(lblAbouta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 530, -1));
+
+        lblAboutUsLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/rb_68108 (2).png"))); // NOI18N
+        pnlAboutUs.add(lblAboutUsLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 170, 440, -1));
 
         tbAdminDashBoard.addTab("AboutUs", pnlAboutUs);
 
-        pnlhome.setBackground(new java.awt.Color(0, 0, 0));
+        pnlhome.setBackground(new java.awt.Color(204, 204, 255));
 
-        pnlAmbulance.setBackground(new java.awt.Color(102, 255, 102));
+        pnlAmbulance.setBackground(new java.awt.Color(204, 204, 255));
 
         lblNumberAmbulance.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNumberAmbulance.setText("Ambulance Model : A100");
@@ -173,13 +179,13 @@ public class HomeScreen extends javax.swing.JFrame {
             pnlAmbulanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAmbulanceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAmbulanceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAvailableAmbulance)
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(pnlAmbulanceLayout.createSequentialGroup()
-                .addComponent(lblNumberAmbulance)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(pnlAmbulanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlAmbulanceLayout.createSequentialGroup()
+                        .addComponent(lblAmbulanceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblAvailableAmbulance))
+                    .addComponent(lblNumberAmbulance))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         pnlAmbulanceLayout.setVerticalGroup(
             pnlAmbulanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +198,7 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlFirefighters.setBackground(new java.awt.Color(102, 255, 255));
+        pnlFirefighters.setBackground(new java.awt.Color(204, 204, 255));
 
         lblNumberFirefightersAvailable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNumberFirefightersAvailable.setText("Firefighter Model : F200");
@@ -207,15 +213,15 @@ public class HomeScreen extends javax.swing.JFrame {
         pnlFirefighters.setLayout(pnlFirefightersLayout);
         pnlFirefightersLayout.setHorizontalGroup(
             pnlFirefightersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFirefightersLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblFirefightersNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAvailableFire)
-                .addGap(78, 78, 78))
             .addGroup(pnlFirefightersLayout.createSequentialGroup()
-                .addComponent(lblNumberFirefightersAvailable)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(pnlFirefightersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlFirefightersLayout.createSequentialGroup()
+                        .addComponent(lblFirefightersNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAvailableFire, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNumberFirefightersAvailable))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         pnlFirefightersLayout.setVerticalGroup(
             pnlFirefightersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,104 +229,57 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblNumberFirefightersAvailable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlFirefightersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAvailableFire)
-                    .addComponent(lblFirefightersNumber)))
+                .addGroup(pnlFirefightersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblFirefightersNumber)
+                    .addComponent(lblAvailableFire, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pnlPoliceCars.setBackground(new java.awt.Color(255, 51, 51));
+        pnlPoliceCars.setBackground(new java.awt.Color(204, 204, 255));
         pnlPoliceCars.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        lblNumberPoliceCarsAvailable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblNumberPoliceCarsAvailable.setText("Police Car Model : P300");
-
-        lblNumberPoliceAvailable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblNumberPoliceAvailable.setText("Status:");
-
-        lblAvailablePolice1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAvailablePolice1.setText("Available ");
 
         javax.swing.GroupLayout pnlPoliceCarsLayout = new javax.swing.GroupLayout(pnlPoliceCars);
         pnlPoliceCars.setLayout(pnlPoliceCarsLayout);
         pnlPoliceCarsLayout.setHorizontalGroup(
             pnlPoliceCarsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPoliceCarsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlPoliceCarsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPoliceCarsLayout.createSequentialGroup()
-                        .addComponent(lblNumberPoliceAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAvailablePolice1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lblNumberPoliceCarsAvailable, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 222, Short.MAX_VALUE)
         );
         pnlPoliceCarsLayout.setVerticalGroup(
             pnlPoliceCarsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPoliceCarsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNumberPoliceCarsAvailable)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlPoliceCarsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumberPoliceAvailable)
-                    .addComponent(lblAvailablePolice1)))
+            .addGap(0, 62, Short.MAX_VALUE)
         );
 
         lblSlogan.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblSlogan.setForeground(new java.awt.Color(0, 255, 0));
         lblSlogan.setText("Responding Fast, Saving Lives");
 
-        lblFireTruck1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/firetruck1.jpeg"))); // NOI18N
-        lblFireTruck1.setText("jLabel2");
+        lblFireTruck1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/firetruck1-removebg-preview.png"))); // NOI18N
 
-        lblAmbulance2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/ambulance2 (1).jpeg"))); // NOI18N
+        lblAmbulance2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/ambulancea-removebg-preview.png"))); // NOI18N
 
-        lblAmbulance1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/ambulance1.jpeg"))); // NOI18N
+        lblAmbulance1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/ambulance2__1_-removebg-preview.png"))); // NOI18N
 
-        lblPoliceCar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/policecar2.jpeg"))); // NOI18N
+        lblPoliceCar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/policecar2-removebg-preview.png"))); // NOI18N
 
-        lblPoliceCar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/policecar1.jpeg"))); // NOI18N
+        lblPoliceCar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/policecar1-removebg-preview.png"))); // NOI18N
         lblPoliceCar2.setText("jLabel3");
 
-        lblFireTruck2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/firetruck2.jpeg"))); // NOI18N
+        lblFireTruck2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/firetruck2-removebg-preview.png"))); // NOI18N
         lblFireTruck2.setText("jLabel3");
 
-        pnlAmbulance1.setBackground(new java.awt.Color(102, 255, 102));
-
-        lblNumberAmbulance1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblNumberAmbulance1.setText("Ambulance Model : A150");
-
-        lblAmbulanceNumber1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAmbulanceNumber1.setText("Status:");
-
-        lblAvailableAmbulance1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAvailableAmbulance1.setText("Available ");
+        pnlAmbulance1.setBackground(new java.awt.Color(204, 204, 255));
 
         javax.swing.GroupLayout pnlAmbulance1Layout = new javax.swing.GroupLayout(pnlAmbulance1);
         pnlAmbulance1.setLayout(pnlAmbulance1Layout);
         pnlAmbulance1Layout.setHorizontalGroup(
             pnlAmbulance1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAmbulance1Layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
-                .addGroup(pnlAmbulance1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAmbulance1Layout.createSequentialGroup()
-                        .addComponent(lblAmbulanceNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAvailableAmbulance1))
-                    .addComponent(lblNumberAmbulance1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 235, Short.MAX_VALUE)
         );
         pnlAmbulance1Layout.setVerticalGroup(
             pnlAmbulance1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAmbulance1Layout.createSequentialGroup()
-                .addComponent(lblNumberAmbulance1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlAmbulance1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAmbulanceNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailableAmbulance1)))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        pnlAmbulance2.setBackground(new java.awt.Color(102, 255, 255));
+        pnlAmbulance2.setBackground(new java.awt.Color(204, 204, 255));
 
         lblNumberAmbulance2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNumberAmbulance2.setText("Firefighter Model : F250");
@@ -329,35 +288,47 @@ public class HomeScreen extends javax.swing.JFrame {
         lblAmbulanceNumber2.setText("Status:");
 
         lblAvailableAmbulance2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAvailableAmbulance2.setText("UnAvailable ");
+        lblAvailableAmbulance2.setText("Unavailable ");
 
         javax.swing.GroupLayout pnlAmbulance2Layout = new javax.swing.GroupLayout(pnlAmbulance2);
         pnlAmbulance2.setLayout(pnlAmbulance2Layout);
         pnlAmbulance2Layout.setHorizontalGroup(
             pnlAmbulance2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAmbulance2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblAmbulanceNumber2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAvailableAmbulance2)
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(pnlAmbulance2Layout.createSequentialGroup()
-                .addComponent(lblNumberAmbulance2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(pnlAmbulance2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNumberAmbulance2)
+                    .addGroup(pnlAmbulance2Layout.createSequentialGroup()
+                        .addComponent(lblAmbulanceNumber2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblAvailableAmbulance2)))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
         pnlAmbulance2Layout.setVerticalGroup(
             pnlAmbulance2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAmbulance2Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(lblNumberAmbulance2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlAmbulance2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAmbulance2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailableAmbulance2)
                     .addComponent(lblAmbulanceNumber2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pnlPoliceCars1.setBackground(new java.awt.Color(255, 51, 51));
+        pnlPoliceCars1.setBackground(new java.awt.Color(204, 204, 255));
         pnlPoliceCars1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        javax.swing.GroupLayout pnlPoliceCars1Layout = new javax.swing.GroupLayout(pnlPoliceCars1);
+        pnlPoliceCars1.setLayout(pnlPoliceCars1Layout);
+        pnlPoliceCars1Layout.setHorizontalGroup(
+            pnlPoliceCars1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 218, Short.MAX_VALUE)
+        );
+        pnlPoliceCars1Layout.setVerticalGroup(
+            pnlPoliceCars1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
 
         lblNumberPoliceCarsAvailable1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblNumberPoliceCarsAvailable1.setText("Police Car Model : P350");
@@ -368,58 +339,88 @@ public class HomeScreen extends javax.swing.JFrame {
         lblAvailablePolice2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAvailablePolice2.setText("UnAvailable ");
 
-        javax.swing.GroupLayout pnlPoliceCars1Layout = new javax.swing.GroupLayout(pnlPoliceCars1);
-        pnlPoliceCars1.setLayout(pnlPoliceCars1Layout);
-        pnlPoliceCars1Layout.setHorizontalGroup(
-            pnlPoliceCars1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNumberPoliceCarsAvailable1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-            .addGroup(pnlPoliceCars1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNumberPoliceAvailable1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAvailablePolice2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlPoliceCars1Layout.setVerticalGroup(
-            pnlPoliceCars1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPoliceCars1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNumberPoliceCarsAvailable1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlPoliceCars1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumberPoliceAvailable1)
-                    .addComponent(lblAvailablePolice2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        lblNumberPoliceCarsAvailable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNumberPoliceCarsAvailable.setText("Police Car Model : P300");
+
+        lblNumberPoliceAvailable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNumberPoliceAvailable.setText("Status:");
+
+        lblAvailablePolice1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAvailablePolice1.setText("Available ");
+
+        lblNumberAmbulance1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNumberAmbulance1.setText("Ambulance Model : A150");
+
+        lblAmbulanceNumber1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAmbulanceNumber1.setText("Status:");
+
+        lblAvailableAmbulance1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAvailableAmbulance1.setText("Available ");
 
         javax.swing.GroupLayout pnlhomeLayout = new javax.swing.GroupLayout(pnlhome);
         pnlhome.setLayout(pnlhomeLayout);
         pnlhomeLayout.setHorizontalGroup(
             pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
+                .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlhomeLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlFirefighters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblFireTruck2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFireTruck1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFireTruck2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlFirefighters, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFireTruck1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(188, 188, 188)
-                .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlAmbulance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAmbulance1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlAmbulance1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
-                .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
-                        .addComponent(lblPoliceCar2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
                     .addGroup(pnlhomeLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlAmbulance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAmbulance1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlhomeLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlhomeLayout.createSequentialGroup()
+                                        .addComponent(lblAmbulanceNumber1)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(lblAvailableAmbulance1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pnlAmbulance1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblNumberAmbulance1)))))
+                    .addGroup(pnlhomeLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(lblAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlhomeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                         .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnlPoliceCars, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPoliceCar1)
                             .addComponent(pnlPoliceCars1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlhomeLayout.createSequentialGroup()
+                                .addComponent(lblNumberPoliceAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblAvailablePolice1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNumberPoliceCarsAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlhomeLayout.createSequentialGroup()
+                                .addComponent(lblNumberPoliceAvailable1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblAvailablePolice2))
+                            .addComponent(lblNumberPoliceCarsAvailable1))
+                        .addGap(94, 94, 94))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPoliceCar2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPoliceCar1))
+                        .addGap(20, 20, 20))))
             .addGroup(pnlhomeLayout.createSequentialGroup()
                 .addGap(504, 504, 504)
                 .addComponent(lblSlogan, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,43 +431,64 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(pnlhomeLayout.createSequentialGroup()
                 .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlhomeLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblFireTruck1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlhomeLayout.createSequentialGroup()
                         .addComponent(lblSlogan)
                         .addGap(12, 12, 12)
+                        .addComponent(lblAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPoliceCar2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblPoliceCar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFireTruck1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlhomeLayout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(lblFireTruck2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPoliceCar1)
+                            .addGroup(pnlhomeLayout.createSequentialGroup()
+                                .addComponent(pnlAmbulance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(lblAmbulance1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumberAmbulance1)
+                            .addComponent(lblNumberPoliceCarsAvailable1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlAmbulance1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlhomeLayout.createSequentialGroup()
+                                .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblNumberPoliceAvailable1)
+                                        .addComponent(lblAvailablePolice2))
+                                    .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblAvailableAmbulance1)
+                                        .addComponent(lblAmbulanceNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 19, Short.MAX_VALUE))))
                     .addGroup(pnlhomeLayout.createSequentialGroup()
                         .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlhomeLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(pnlAmbulance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(lblAmbulance1)
-                                .addGap(18, 18, 18)
-                                .addComponent(pnlAmbulance1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(269, 269, 269)
+                                .addComponent(pnlAmbulance2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlhomeLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlhomeLayout.createSequentialGroup()
-                                        .addComponent(pnlFirefighters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(182, 182, 182))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlhomeLayout.createSequentialGroup()
-                                        .addComponent(pnlPoliceCars, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblPoliceCar1)))
-                                .addGap(18, 18, 18)
-                                .addComponent(pnlPoliceCars1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addComponent(lblNumberPoliceCarsAvailable)
+                                        .addGap(4, 4, 4)
+                                        .addGroup(pnlhomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblNumberPoliceAvailable)
+                                            .addComponent(lblAvailablePolice1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pnlPoliceCars, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlhomeLayout.createSequentialGroup()
+                                        .addComponent(pnlFirefighters, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(lblFireTruck2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlPoliceCars1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         tbAdminDashBoard.addTab("Homepage", pnlhome);
@@ -477,13 +499,13 @@ public class HomeScreen extends javax.swing.JFrame {
         lblSerialNumber.setText("Serial Number");
 
         lblModelNumber.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblModelNumber.setText("Model Number");
+        lblModelNumber.setText("Model Name");
 
         lblPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPrice.setText("Price");
 
         lblEmergencyVehicleName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblEmergencyVehicleName.setText("Emergency Vehicle Name");
+        lblEmergencyVehicleName.setText("Vehicle Number");
 
         lblVehicleType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVehicleType.setText("Vehicle Type");
@@ -567,7 +589,7 @@ public class HomeScreen extends javax.swing.JFrame {
         lblSortingPart.setText("Sorting Section");
 
         btnSortByVehicleName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSortByVehicleName.setText("Sort By Vehicle Name");
+        btnSortByVehicleName.setText("Sort By Vehicle Number");
         btnSortByVehicleName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSortByVehicleNameActionPerformed(evt);
@@ -602,15 +624,15 @@ public class HomeScreen extends javax.swing.JFrame {
                         .addComponent(lblSortingPart, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(56, 56, 56)
                 .addComponent(btnSortByModelName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btSort, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(28, 28, 28))
         );
         pnlSortingPartLayout.setVerticalGroup(
             pnlSortingPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSortingPartLayout.createSequentialGroup()
                 .addComponent(lblSortingPart, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(45, 45, 45)
                 .addGroup(pnlSortingPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSortByVehicleName)
                     .addComponent(btnSortByModelName)
@@ -657,10 +679,10 @@ public class HomeScreen extends javax.swing.JFrame {
                         .addGroup(PnlServiceRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(tfServiceRequest, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAddServiceRequest, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(41, 41, 41)
-                        .addGroup(PnlServiceRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDispatchVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDispatchVehicle))))
+                        .addGap(51, 51, 51)
+                        .addGroup(PnlServiceRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDispatchVehicle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfDispatchVehicle))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PnlServiceRequestLayout.setVerticalGroup(
@@ -668,17 +690,15 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(PnlServiceRequestLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lnlServiceRequest)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
+                .addGroup(PnlServiceRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDispatchVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PnlServiceRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PnlServiceRequestLayout.createSequentialGroup()
-                        .addComponent(tfDispatchVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDispatchVehicle))
-                    .addGroup(PnlServiceRequestLayout.createSequentialGroup()
-                        .addComponent(tfServiceRequest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAddServiceRequest)))
-                .addContainerGap(113, Short.MAX_VALUE))
+                    .addComponent(btnDispatchVehicle)
+                    .addComponent(btnAddServiceRequest))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         tfEmergencyCalls.setColumns(20);
@@ -693,6 +713,23 @@ public class HomeScreen extends javax.swing.JFrame {
         tfEmail.setText("                Email  Messages\n\n                        100\n\n         12% up since last month");
         jScrollPane3.setViewportView(tfEmail);
 
+        lblSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSearch.setText("Search Bar");
+
+        btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        tfSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlAdminLayout = new javax.swing.GroupLayout(pnlAdmin);
         pnlAdmin.setLayout(pnlAdminLayout);
         pnlAdminLayout.setHorizontalGroup(
@@ -706,50 +743,65 @@ public class HomeScreen extends javax.swing.JFrame {
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAddVehicle)
-                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblEmergencyVehicleName)
-                                .addGroup(pnlAdminLayout.createSequentialGroup()
-                                    .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(pnlAdminLayout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lblSerialNumber))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblModelNumber)
-                                                .addComponent(tfEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(pnlAdminLayout.createSequentialGroup()
-                                            .addGap(184, 184, 184)
-                                            .addComponent(btnFetch)))
-                                    .addGap(60, 60, 60)
-                                    .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnUpdateVehicle)
-                                        .addComponent(tfModelNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(34, 34, 34)
-                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlAdminLayout.createSequentialGroup()
-                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblVehicleType))
-                                .addGap(64, 64, 64)
+                                .addContainerGap()
                                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
-                                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(24, 24, 24)))
-                                .addGap(45, 45, 45)
-                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblAvailabilityStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbAvailabilityStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(29, 29, 29)
-                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnDeleteVehicle)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1055, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                                        .addComponent(btnAddVehicle)
+                                        .addGap(69, 69, 69)
+                                        .addComponent(btnFetch)
+                                        .addGap(75, 75, 75)
+                                        .addComponent(btnUpdateVehicle)
+                                        .addGap(66, 66, 66)
+                                        .addComponent(btnDeleteVehicle))
+                                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                                .addComponent(lblSerialNumber)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(lblModelNumber))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                                                .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(32, 32, 32)
+                                                .addComponent(tfEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27)))
+                                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                                .addComponent(lblEmergencyVehicleName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(lblVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                                .addComponent(tfModelNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cbVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                                .addGap(57, 57, 57)
+                                                .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(68, 68, 68))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(80, 80, 80)))
+                                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblAvailabilityStatus)
+                                            .addComponent(cbAvailabilityStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(55, 55, 55)
+                                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(pnlAdminLayout.createSequentialGroup()
+                                .addGap(379, 379, 379)
+                                .addComponent(lblSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSearch)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1055, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -760,20 +812,20 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(pnlAdminLayout.createSequentialGroup()
                 .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAdminLayout.createSequentialGroup()
-                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlAdminLayout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblSerialNumber)
-                                    .addComponent(lblModelNumber)))
-                            .addGroup(pnlAdminLayout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblEmergencyVehicleName)
-                                    .addComponent(lblVehicleType)
-                                    .addComponent(lblPrice)
-                                    .addComponent(lblAvailabilityStatus)
-                                    .addComponent(lblCurrentLocation))))
+                        .addGap(21, 21, 21)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSearch)
+                            .addComponent(btnSearch)
+                            .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCurrentLocation)
+                            .addComponent(lblAvailabilityStatus)
+                            .addComponent(lblPrice)
+                            .addComponent(lblVehicleType)
+                            .addComponent(lblEmergencyVehicleName)
+                            .addComponent(lblModelNumber)
+                            .addComponent(lblSerialNumber))
                         .addGap(18, 18, 18)
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfSerialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -783,28 +835,29 @@ public class HomeScreen extends javax.swing.JFrame {
                             .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbAvailabilityStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAddVehicle)
                             .addComponent(btnFetch)
                             .addComponent(btnUpdateVehicle)
                             .addComponent(btnDeleteVehicle))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(7, 7, 7)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlAdminLayout.createSequentialGroup()
+                        .addGap(227, 227, 227)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlSortingPart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PnlServiceRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         tbAdminDashBoard.addTab("Admin Dashboard", pnlAdmin);
 
-        pnlheader.setBackground(new java.awt.Color(0, 0, 0));
+        pnlheader.setBackground(new java.awt.Color(255, 255, 255));
 
         btnLogout.setBackground(new java.awt.Color(255, 0, 0));
         btnLogout.setText("Log out");
@@ -826,9 +879,9 @@ public class HomeScreen extends javax.swing.JFrame {
             pnlheaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlheaderLayout.createSequentialGroup()
                 .addComponent(lblSmallLogo)
-                .addGap(304, 304, 304)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
                 .addComponent(lblEmergencyVehicleIS)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(325, 325, 325)
                 .addComponent(btnLogout)
                 .addContainerGap())
         );
@@ -842,7 +895,7 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlheaderLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblEmergencyVehicleIS)
-                .addGap(16, 16, 16))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -851,15 +904,15 @@ public class HomeScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlheader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tbAdminDashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 1302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(tbAdminDashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlheader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tbAdminDashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tbAdminDashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -879,10 +932,13 @@ public class HomeScreen extends javax.swing.JFrame {
 /** 
  * Populates the vehicle table with data from the emergency vehicles list and service requests.
  */
+    
+
 private void populateVehicleTable() {
     // Get the DefaultTableModel from the table
     DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
-    tableModel.setRowCount(0);    
+    tableModel.setRowCount(0); // Clear existing data
+
     for (EmergencyVehicle vehicle : VehicleManager.getEmergencyVehicles()) {
         tableModel.addRow(new Object[]{
             vehicle.getSerialNumber(),
@@ -893,16 +949,19 @@ private void populateVehicleTable() {
             vehicle.getCurrentLocation(),
             vehicle.getPrice(),
             "", // Placeholder for service request
-            "" //Placeholder for dispatch status
-        });        
+            vehicle.isDispatched() ? "Dispatched" : "Undispatched" // Populate dispatch status
+        });
     }
+
     // Populate the service request column
     CustomQueue<String> serviceRequests = emergencyService.getServiceRequests();
     int rowIndex = 0;
     for (String request : serviceRequests) {
-        tableModel.setValueAt(request, rowIndex++, 7);  // Assuming column 7 is for service requests
+        tableModel.setValueAt(request, rowIndex++, 7); // Assuming column 7 is for service requests
     }
 }
+
+
 
 /**
  * Method to create an EmergencyVehicle object using user inputs and collect all error messages in a StringBuilder. 
@@ -968,7 +1027,7 @@ private EmergencyVehicle createEmergencyVehicleFromInputs() {
     // Validate price
     String priceValidationError = ValidationUtil.validatePrice(priceText);
     if (priceValidationError != null) {
-        errorMessages.append("Price: ").append(priceValidationError).append("\n");
+        errorMessages.append(priceValidationError).append("\n");
     }
 
     // If there are any validation errors, show all messages and return null
@@ -981,7 +1040,7 @@ private EmergencyVehicle createEmergencyVehicleFromInputs() {
     int price = Integer.parseInt(priceText);
 
     // Create and return the Emergency Vehicle object
-    return new EmergencyVehicle(serialNumber, modelNumber, emergencyVehicleName, vehicleType, availabilityStatus, location, price);
+    return new EmergencyVehicle(serialNumber, modelNumber, emergencyVehicleName, vehicleType, availabilityStatus, location, price,false);
 }
     
 //Method to clear all the textfields and reset the combobox
@@ -1061,6 +1120,7 @@ private void clearInputFields() {
  *
  * @param evt the action event triggered by the button click
  */
+    
     private void btnDeleteVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVehicleActionPerformed
     String serialNumberInput = tfSerialNumber.getText().trim(); // Get the input from the user
 
@@ -1085,7 +1145,6 @@ private void clearInputFields() {
         }
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Invalid serial number. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
-    
     }    }//GEN-LAST:event_btnDeleteVehicleActionPerformed
 
 /**
@@ -1193,7 +1252,7 @@ try {
  *
  * @param evt the action event triggered by the button click
  */
-    
+ 
     private void btnAddServiceRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddServiceRequestActionPerformed
     String serialNumberStr = tfSerialNumber.getText();
     String request = tfServiceRequest.getText();
@@ -1201,15 +1260,20 @@ try {
     // Validation logic
     StringBuilder errorMessages = new StringBuilder();
     int serialNumber = -1;
-    try {
-        serialNumber = Integer.parseInt(serialNumberStr);
-    } catch (NumberFormatException e) {
-        errorMessages.append("Serial number must be a valid number.\n");
-    }
-    
+
     if (serialNumberStr == null || serialNumberStr.trim().isEmpty()) {
         errorMessages.append("Serial number cannot be empty.\n");
+    } else {
+        try {
+            serialNumber = Integer.parseInt(serialNumberStr);
+            if (serialNumber < 0) {
+                errorMessages.append("Serial number must be a positive number.\n");
+            }
+        } catch (NumberFormatException e) {
+            errorMessages.append("Serial number must be a valid number.\n");
+        }
     }
+
     if (request == null || request.trim().isEmpty()) {
         errorMessages.append("Service request cannot be empty.\n");
     } else {
@@ -1229,6 +1293,10 @@ try {
     boolean serialNumberFound = false;
     for (int i = 0; i < tableModel.getRowCount(); i++) {
         System.out.println("Checking row " + i + ": " + tableModel.getValueAt(i, 0));
+        if (serialNumber == 0) {
+            JOptionPane.showMessageDialog(null, "Serial number 0 is not present in the table.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (serialNumber == (int) tableModel.getValueAt(i, 0)) { // Assuming column 0 is for serial numbers
             tableModel.setValueAt(request, i, 7); // Assuming column 7 is for service requests
             serialNumberFound = true;
@@ -1315,6 +1383,8 @@ try {
 
     // Refresh the table to show the sorted data
     populateVehicleTable();
+    // Display a confirmation message
+    JOptionPane.showMessageDialog(null, "Vehicles sorted by model name in ascending order.","Sort Confirmation", JOptionPane.INFORMATION_MESSAGE);
             }//GEN-LAST:event_btnSortByModelNameActionPerformed
 
  /**
@@ -1334,13 +1404,24 @@ try {
             )
         )
     );
-
+      populateVehicleTable();
+    
+// Display a confirmation message 
+JOptionPane.showMessageDialog(null, "Vehicles sorted by vehicle number in ascending order.", "Sort Confirmation", JOptionPane.INFORMATION_MESSAGE);
     // Refresh the table to show the sorted data
     populateVehicleTable();    }//GEN-LAST:event_btnSortByVehicleNameActionPerformed
 
     private void tfModelNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfModelNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfModelNumberActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void tfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSearchActionPerformed
 
  /**
  * Method to handle the logout action.
@@ -1400,6 +1481,7 @@ try {
     private javax.swing.JButton btnDispatchVehicle;
     private javax.swing.JButton btnFetch;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSortByModelName;
     private javax.swing.JButton btnSortByVehicleName;
     private javax.swing.JButton btnUpdateVehicle;
@@ -1410,6 +1492,7 @@ try {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblAbout;
+    private javax.swing.JLabel lblAboutUsLogo;
     private javax.swing.JLabel lblAbouta;
     private javax.swing.JLabel lblAmbulance1;
     private javax.swing.JLabel lblAmbulance2;
@@ -1441,6 +1524,7 @@ try {
     private javax.swing.JLabel lblPoliceCar1;
     private javax.swing.JLabel lblPoliceCar2;
     private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSerialNumber;
     private javax.swing.JLabel lblSlogan;
     private javax.swing.JLabel lblSmallLogo;
@@ -1466,6 +1550,7 @@ try {
     private javax.swing.JTextField tfEmergencyVehicleName;
     private javax.swing.JTextField tfModelNumber;
     private javax.swing.JTextField tfPrice;
+    private javax.swing.JTextField tfSearch;
     private javax.swing.JTextField tfSerialNumber;
     private javax.swing.JTextField tfServiceRequest;
     // End of variables declaration//GEN-END:variables

@@ -54,11 +54,11 @@ public class LoadingScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlLoading.setBackground(new java.awt.Color(0, 0, 0));
+        pnlLoading.setBackground(new java.awt.Color(204, 204, 255));
         pnlLoading.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLoadingImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/Actualambulance.png"))); // NOI18N
-        pnlLoading.add(lblLoadingImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 360, 270));
+        pnlLoading.add(lblLoadingImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 360, 270));
 
         lblEmergency.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblEmergency.setForeground(new java.awt.Color(255, 0, 51));
@@ -66,7 +66,6 @@ public class LoadingScreen extends javax.swing.JFrame {
         pnlLoading.add(lblEmergency, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
         lblINFORMATIONSYSTEM.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        lblINFORMATIONSYSTEM.setForeground(new java.awt.Color(51, 255, 51));
         lblINFORMATIONSYSTEM.setText("INFORMATION SYSTEM");
         pnlLoading.add(lblINFORMATIONSYSTEM, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, -1, -1));
         pnlLoading.add(jProgressBarloading, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 1010, 20));
@@ -79,7 +78,7 @@ public class LoadingScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Loading...");
-        pnlLoading.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
+        pnlLoading.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, -1, -1));
 
         jLabel2.setText("jLabel2");
         pnlLoading.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 90, 150));

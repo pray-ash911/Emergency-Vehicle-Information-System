@@ -10,7 +10,7 @@ import java.util.List;
 public class SelectionSort {
 
     /**
-     * Sorts a list of EmergencyVehicle objects by their serial number in ascending or descending order.
+     * Sorts a list of EmergencyVehicle objects by their serial number in ascending order.
      *
      * @param vehicleList the list of EmergencyVehicle objects to be sorted
      * @param isDesc specifies the sort order (true for descending, false for ascending)

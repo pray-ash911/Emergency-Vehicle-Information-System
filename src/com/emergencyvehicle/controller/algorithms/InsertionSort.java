@@ -10,7 +10,7 @@ import java.util.List;
 public class InsertionSort {
 
     /**
-     * Sorts a list of EmergencyVehicle objects based on a emergencyVehicleName in ascending 
+     * Sorts a list of EmergencyVehicle objects based on model name in ascending 
      *
      * @param vehicleList the list of EmergencyVehicle objects to be sorted
      * @param isDesc specifies the sort order (true for descending, false for ascending)

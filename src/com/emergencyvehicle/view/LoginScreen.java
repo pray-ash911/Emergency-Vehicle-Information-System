@@ -68,7 +68,7 @@ public class LoginScreen extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(554, 463));
         setSize(new java.awt.Dimension(554, 463));
 
-        pnlLoginForm.setBackground(new java.awt.Color(0, 0, 0));
+        pnlLoginForm.setBackground(new java.awt.Color(204, 204, 255));
 
         btnLogin.setBackground(new java.awt.Color(204, 0, 204));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -84,17 +84,14 @@ public class LoginScreen extends javax.swing.JFrame {
         lblWelcomeBack.setText("WELCOME BACK");
         lblWelcomeBack.setPreferredSize(new java.awt.Dimension(120, 20));
 
-        lblSignIn.setBackground(new java.awt.Color(0, 204, 255));
+        lblSignIn.setBackground(new java.awt.Color(153, 153, 255));
         lblSignIn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblSignIn.setForeground(new java.awt.Color(204, 0, 204));
         lblSignIn.setText("Sign in to continue");
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername.setText("Username:");
 
         lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
         lblPassword.setText("Password:");
 
         tfUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -114,11 +111,9 @@ public class LoginScreen extends javax.swing.JFrame {
         lblEmergency.setText("Emergency Vehicle ");
 
         lblINFORMATIONSYSTEM.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblINFORMATIONSYSTEM.setForeground(new java.awt.Color(255, 255, 255));
         lblINFORMATIONSYSTEM.setText("INFORMATION SYSTEM");
 
         lblWELCOMETO.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblWELCOMETO.setForeground(new java.awt.Color(255, 255, 255));
         lblWELCOMETO.setText("WELCOME TO");
 
         lblLoginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/emergencyvehicle/resources/Actualambulance.png"))); // NOI18N
@@ -130,8 +125,6 @@ public class LoginScreen extends javax.swing.JFrame {
             pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginFormLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblEmergency)
-                .addGap(187, 187, 187)
                 .addComponent(btnLogin)
                 .addGap(414, 414, 414))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginFormLayout.createSequentialGroup()
@@ -139,13 +132,17 @@ public class LoginScreen extends javax.swing.JFrame {
                     .addGroup(pnlLoginFormLayout.createSequentialGroup()
                         .addGap(201, 201, 201)
                         .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblWELCOMETO)
-                            .addComponent(lblINFORMATIONSYSTEM, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblINFORMATIONSYSTEM, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWELCOMETO))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginFormLayout.createSequentialGroup()
-                        .addContainerGap(180, Short.MAX_VALUE)
-                        .addComponent(lblLoginLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)))
+                        .addContainerGap(182, Short.MAX_VALUE)
+                        .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLoginLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginFormLayout.createSequentialGroup()
+                                .addComponent(lblEmergency)
+                                .addGap(29, 29, 29)))
+                        .addGap(80, 80, 80)))
                 .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSignIn)
                     .addComponent(lblWelcomeBack, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,34 +154,32 @@ public class LoginScreen extends javax.swing.JFrame {
         );
         pnlLoginFormLayout.setVerticalGroup(
             pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginFormLayout.createSequentialGroup()
-                .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlLoginFormLayout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(lblWelcomeBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSignIn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(lblUsername)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblPassword)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(pnlLoginFormLayout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(lblLoginLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblWELCOMETO)
-                        .addGap(6, 6, 6)))
-                .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEmergency))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginFormLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(lblWelcomeBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSignIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(lblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(lblPassword)
+                .addGap(18, 18, 18)
+                .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginFormLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(lblLoginLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblWELCOMETO)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblEmergency)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblINFORMATIONSYSTEM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                .addGap(158, 158, 158))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

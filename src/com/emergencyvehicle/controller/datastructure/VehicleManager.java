@@ -24,11 +24,11 @@ public class VehicleManager {
 
     static {
         // Pre-populate with 5 vehicles
-        emergencyVehicles.add(new EmergencyVehicle(1, "A100", "Ambulance Model X", "Ambulance", "Available", "Manamaiju", 5000));
-        emergencyVehicles.add(new EmergencyVehicle(2, "F200", "Fire Truck Model Y", "Fire Truck", "Unavailable", "Kamalpokhari", 7500));
-        emergencyVehicles.add(new EmergencyVehicle(3, "P300", "Police Car Model Z", "Police Car", "Available", "Baneshwor", 3000));
-        emergencyVehicles.add(new EmergencyVehicle(4, "A150", "Ambulance Model A", "Ambulance", "Available", "Ratnapark", 5200));
-        emergencyVehicles.add(new EmergencyVehicle(5, "F250", "Fire Truck Model B", "Fire Truck", "Unavailable", "Thamel", 8000));
+        emergencyVehicles.add(new EmergencyVehicle(1, "A100", "Ambulance Model X", "Ambulance", "Available", "Manamaiju", 5000,false));
+        emergencyVehicles.add(new EmergencyVehicle(2, "F200", "Fire Truck Model Y", "Fire Truck", "Unavailable", "Kamalpokhari", 7500,true));
+        emergencyVehicles.add(new EmergencyVehicle(3, "P300", "Police Car Model Z", "Police Car", "Available", "Baneshwor", 3000,false));
+        emergencyVehicles.add(new EmergencyVehicle(4, "A150", "Ambulance Model A", "Ambulance", "Available", "Ratnapark", 5200,true));
+        emergencyVehicles.add(new EmergencyVehicle(5, "F250", "Fire Truck Model B", "Fire Truck", "Unavailable", "Thamel", 8000,false));
     }
 
     /**

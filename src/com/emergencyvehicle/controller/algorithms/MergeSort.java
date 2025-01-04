@@ -17,9 +17,7 @@ import java.util.List;
 public class MergeSort {
 
     /**
-     * Sorts a list of EmergencyVehicle objects by their emergency vehicle name in ascending or
-     * descending order.
-     *
+     * Sorts a list of EmergencyVehicle objects by their emergency vehicle name in ascending order
      * @param vehicleList the list of EmergencyVehicle objects to be sorted
      * @param descending specifies the sort order (true for descending, false for ascending)
      * @return the sorted list

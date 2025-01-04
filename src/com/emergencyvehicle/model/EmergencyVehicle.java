@@ -18,7 +18,7 @@ public class EmergencyVehicle {
     private boolean hasServiceRequest; // Indicates if there's a pending service request
 
     // Constructor
-    public EmergencyVehicle(int serialNumber, String modelNumber, String emergencyVehicleName, String vehicleType, String availabilityStatus, String currentLocation, int price) {
+    public EmergencyVehicle(int serialNumber, String modelNumber, String emergencyVehicleName, String vehicleType, String availabilityStatus, String currentLocation, int price, boolean isDispatched) {
         this.serialNumber = serialNumber;
         this.modelNumber = modelNumber;
         this.emergencyVehicleName = emergencyVehicleName;
@@ -26,7 +26,7 @@ public class EmergencyVehicle {
         this.availabilityStatus = availabilityStatus;
         this.currentLocation = currentLocation;
         this.price = price;
-        this.isDispatched = false;  // Initially, the vehicle is not dispatched
+        this.isDispatched = isDispatched;  // Set dispatch status in constructor
         this.hasServiceRequest = false;  // Initially, no service request
     }
 
@@ -133,7 +133,7 @@ public class EmergencyVehicle {
     }
 
     // Override toString for display
-     @Override
+    @Override
     public String toString() {
         return "EmergencyVehicle{" +
                 "serialNumber=" + serialNumber +
@@ -143,6 +143,8 @@ public class EmergencyVehicle {
                 ", availabilityStatus='" + availabilityStatus + '\'' +
                 ", currentLocation='" + currentLocation + '\'' +
                 ", price=" + price +
+                ", isDispatched=" + isDispatched +
+                ", hasServiceRequest=" + hasServiceRequest +
                 '}';
     }
 }
