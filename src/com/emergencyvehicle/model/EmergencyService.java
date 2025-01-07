@@ -3,18 +3,19 @@ package com.emergencyvehicle.model;
 import com.emergencyvehicle.controller.datastructure.CustomQueue;
 
 /**
- * EmergencyService class for managing service requests using a custom queue.
- * 
- * Prayash Rawal
- * LMU ID: 23056551
+ * Prayash Rawal LMU ID: 23056551
+ */
+/**
+ * Emergency Service class for managing service requests using a custom queue.
  */
 public class EmergencyService {
+
     private static CustomQueue<String> serviceRequests = new CustomQueue<>();
 
     static {
         // Pre-populate with initial service requests
         serviceRequests.enqueue("Engine check #A100");
-        serviceRequests.enqueue("Refuel #F200");
+        serviceRequests.enqueue("Refuel #A150");
         serviceRequests.enqueue("Dispatch to Thamel");
         serviceRequests.enqueue("Maintenance At 12");
         serviceRequests.enqueue("Check Sequipment");

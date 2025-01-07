@@ -8,12 +8,15 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * CustomQueue class for implementing a queue data structure using LinkedList.
- * 
- * Prayash Rawal
- * LMU ID: 23056551
+ * Prayash Rawal LMU ID: 23056551
  */
+
+/**
+  * CustomQueue class for implementing a queue data structure using LinkedList.
+ * */
+ 
 public class CustomQueue<T> implements Iterable<T> {
+
     private LinkedList<T> queue = new LinkedList<>(); // Internal storage for the queue.
 
     /**

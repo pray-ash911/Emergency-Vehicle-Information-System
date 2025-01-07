@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.emergencyvehicle.view;
+
 import javax.swing.JOptionPane;
 
 /*
@@ -17,9 +18,10 @@ public class LoginScreen extends javax.swing.JFrame {
     // Store the correct username and password
     private final String correctUsername = "admin";
     private final String correctPassword = "admin";
-  /**  
- * Constructor to initialize the LoginScreen. 
- */
+
+    /**
+     * Constructor to initialize the LoginScreen.
+     */
     public LoginScreen() {
         initComponents();
         this.setTitle("Login Screen");
@@ -195,28 +197,36 @@ public class LoginScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/** 
-    /** * Event handler for login button action. 
-     * Validates the entered username and password, and navigates to HomeScreen if valid. 
-     * * @param evt the action event triggered by the login button */
-    
+
+    /**
+     * * Event handler for login button action. Validates the entered username
+     * and password, and navigates to HomeScreen if valid.
+     *
+     * * @param evt the action event triggered by the login button
+     */
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-           // Get entered username and password
+        // Get entered username and password
         String username = tfUsername.getText();
         String password = tfPassword.getText();
 
-        // Validate the credentials
-        if (username.equals(correctUsername) && password.equals(correctPassword)) {
-            // Correct credentials, navigate to Mainscreen
-            JOptionPane.showMessageDialog(this, "Login Successful!");
-            // Open HomeScreen
-            HomeScreen homeScreen = new HomeScreen(); // Create a new instance of HomeScreen
-            homeScreen.setVisible(true); // Show HomeScreen
-            this.dispose(); // Close the login screen
-       } else {
-            // Incorrect credentials, show error
-            JOptionPane.showMessageDialog(this, "Invalid username or password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
-        } 
+        // Check if username or password is empty
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter both username and password.", "Login Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            // Validate the credentials
+            if (username.equals(correctUsername) && password.equals(correctPassword)) {
+                // Correct credentials, navigate to Main screen
+                JOptionPane.showMessageDialog(this, "Login Successful!");
+                // Open HomeScreen
+                HomeScreen homeScreen = new HomeScreen(); // Create a new instance of HomeScreen
+                homeScreen.setVisible(true); // Show HomeScreen
+                this.dispose(); // Close the login screen
+            } else {
+                // Incorrect credentials, show error
+                JOptionPane.showMessageDialog(this, "Invalid username or password!", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed

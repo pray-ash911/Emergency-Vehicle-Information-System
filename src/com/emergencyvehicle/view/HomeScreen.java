@@ -7,6 +7,7 @@ package com.emergencyvehicle.view;
 import com.emergencyvehicle.controller.algorithms.SelectionSort;
 import com.emergencyvehicle.controller.algorithms.InsertionSort;
 import com.emergencyvehicle.controller.algorithms.MergeSort;
+import com.emergencyvehicle.controller.algorithms.BinarySearch;
 
 import com.emergencyvehicle.controller.datastructure.VehicleManager;
 import com.emergencyvehicle.util.ValidationUtil;
@@ -18,26 +19,25 @@ import javax.swing.table.DefaultTableModel;
 import com.emergencyvehicle.model.EmergencyService;
 import com.emergencyvehicle.controller.datastructure.CustomQueue;
 
-
 public class HomeScreen extends javax.swing.JFrame {
 
     /**
      * Creates new form HomeScreen
      */
     public HomeScreen() {
-    initComponents();// Initialize all GUI components
-    this.setLocationRelativeTo(null);
-    btnUpdateVehicle.setEnabled(false);// At first Update button s disabled
+        initComponents();// Initialize all GUI components
+        this.setLocationRelativeTo(null);
+        btnUpdateVehicle.setEnabled(false);// At first Update button s disabled
 
-    // Set the DefaultTableModel for the table
-    DefaultTableModel tableModel = new DefaultTableModel(
-        new Object[][]{}, // Initial data (empty)
-        new String[]{"Serial Number", "Model Name", "Vehicle Number", "Vehicle Type", "Availability Status", "Current Location", "Price","Service Request","Dispatched Vehicle"} // Column names
-        
-    );
-    tblEmergencyVehicles.setModel(tableModel); // Attach the model to the table
-    populateVehicleTable(); // Populate the table with vehicle data
-}
+        // Set the DefaultTableModel for the table
+        DefaultTableModel tableModel = new DefaultTableModel(
+                new Object[][]{}, // Initial data (empty)
+                new String[]{"Serial Number", "Model Name", "Vehicle Number", "Vehicle Type", "Availability Status", "Current Location", "Price", "Service Request", "Dispatched Vehicle"} // Column names
+
+        );
+        tblEmergencyVehicles.setModel(tableModel); // Attach the model to the table
+        populateVehicleTable(); // Populate the table with vehicle data
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -714,7 +714,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tfEmail);
 
         lblSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSearch.setText("Search Bar");
+        lblSearch.setText("Search Vehicle");
 
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSearch.setText("Search");
@@ -791,7 +791,7 @@ public class HomeScreen extends javax.swing.JFrame {
                                             .addComponent(cbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(pnlAdminLayout.createSequentialGroup()
-                                .addGap(379, 379, 379)
+                                .addGap(358, 358, 358)
                                 .addComponent(lblSearch)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -919,514 +919,590 @@ public class HomeScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-                logoutAction();
+        logoutAction();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void tfServiceRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfServiceRequestActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfServiceRequestActionPerformed
-     
+
     private EmergencyService emergencyService = new EmergencyService();// Instance of EmergencyService to manage service requests
     private List<EmergencyVehicle> emergencyVehicles = new ArrayList<>();// List to store emergency vehicles
 
-/** 
- * Populates the vehicle table with data from the emergency vehicles list and service requests.
- */
-    
+    /**
+     * Populates the vehicle table with data from the emergency vehicles list
+     * and service requests.
+     */
+    private void populateVehicleTable() {
+        // Get the DefaultTableModel from the table
+        DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
+        tableModel.setRowCount(0); // Clear existing data
 
-private void populateVehicleTable() {
-    // Get the DefaultTableModel from the table
-    DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
-    tableModel.setRowCount(0); // Clear existing data
+        for (EmergencyVehicle vehicle : VehicleManager.getEmergencyVehicles()) {
+            tableModel.addRow(new Object[]{
+                vehicle.getSerialNumber(),
+                vehicle.getEmergencyVehicleName(),
+                vehicle.getModelNumber(),
+                vehicle.getVehicleType(),
+                vehicle.getAvailabilityStatus(),
+                vehicle.getCurrentLocation(),
+                vehicle.getPrice(),
+                "", // Placeholder for service request
+                vehicle.isDispatched() ? "Dispatched" : "Undispatched" // Populate dispatch status
+            });
+        }
 
-    for (EmergencyVehicle vehicle : VehicleManager.getEmergencyVehicles()) {
-        tableModel.addRow(new Object[]{
-            vehicle.getSerialNumber(),
-            vehicle.getEmergencyVehicleName(),
-            vehicle.getModelNumber(),
-            vehicle.getVehicleType(),
-            vehicle.getAvailabilityStatus(),
-            vehicle.getCurrentLocation(),
-            vehicle.getPrice(),
-            "", // Placeholder for service request
-            vehicle.isDispatched() ? "Dispatched" : "Undispatched" // Populate dispatch status
-        });
-    }
-
-    // Populate the service request column
-    CustomQueue<String> serviceRequests = emergencyService.getServiceRequests();
-    int rowIndex = 0;
-    for (String request : serviceRequests) {
-        tableModel.setValueAt(request, rowIndex++, 7); // Assuming column 7 is for service requests
-    }
-}
-
-
-
-/**
- * Method to create an EmergencyVehicle object using user inputs and collect all error messages in a StringBuilder. 
- * This method retrieves user inputs, validates them, collects error messages, and creates an EmergencyVehicle object if all inputs are valid.
- * @return an EmergencyVehicle object if all inputs are valid
- * @throws IllegalArgumentException if there are validation errors
- */
-private EmergencyVehicle createEmergencyVehicleFromInputs() {
-    // Initializing a StringBuilder to collect all error messages
-    StringBuilder errorMessages = new StringBuilder();
-
-    // Get inputs from text fields
-    String serialNumberText = tfSerialNumber.getText().trim();
-    String modelNumber = tfModelNumber.getText().trim();
-    String emergencyVehicleName = tfEmergencyVehicleName.getText().trim(); 
-    String priceText = tfPrice.getText().trim();
-
-    // Fetch vehicle type from the combo box
-    String vehicleType = (String) cbVehicleType.getSelectedItem();
-
-    // Validate vehicle type
-    String vehicleTypeError = ValidationUtil.validateEmergencyVehicleType(cbVehicleType);
-    if (vehicleTypeError != null) {
-        errorMessages.append(vehicleTypeError).append("\n");
-    }
-
-    // Fetch location from the combo box
-    String location = (String) cbLocation.getSelectedItem();
-
-    // Validate location
-    String locationError = ValidationUtil.validateLocation(cbLocation);
-    if (locationError != null) {
-        errorMessages.append(locationError).append("\n");
-    }
-
-    // Fetch availability status from the combo box
-    String availabilityStatus = (String) cbAvailabilityStatus.getSelectedItem();
-
-    // Validate availability status
-    String availabilityStatusError = ValidationUtil.validateAvailabilityStatus(cbAvailabilityStatus);
-    if (availabilityStatusError != null) {
-        errorMessages.append(availabilityStatusError).append("\n");
-    }
-
-    // Validate serial number
-    String serialValidationError = ValidationUtil.validateSerialNumber(serialNumberText);
-    if (serialValidationError != null) {
-        errorMessages.append(serialValidationError).append("\n");
-    }
-
-    // Validate model number
-    String modelNumberError = ValidationUtil.validateModelNumber(modelNumber);
-    if (modelNumberError != null) {
-        errorMessages.append(modelNumberError).append("\n");
-    }
-
-    // Validate vehicle name
-    String vehicleNameError = ValidationUtil.validateVehicleName(emergencyVehicleName);
-    if (vehicleNameError != null) {
-        errorMessages.append(vehicleNameError).append("\n");
-    }
-
-    // Validate price
-    String priceValidationError = ValidationUtil.validatePrice(priceText);
-    if (priceValidationError != null) {
-        errorMessages.append(priceValidationError).append("\n");
-    }
-
-    // If there are any validation errors, show all messages and return null
-    if (errorMessages.length() > 0) {
-        throw new IllegalArgumentException(errorMessages.toString());
-    }
-
-    // Parse validated inputs
-    int serialNumber = Integer.parseInt(serialNumberText);
-    int price = Integer.parseInt(priceText);
-
-    // Create and return the Emergency Vehicle object
-    return new EmergencyVehicle(serialNumber, modelNumber, emergencyVehicleName, vehicleType, availabilityStatus, location, price,false);
-}
-    
-//Method to clear all the textfields and reset the combobox
-private void clearInputFields() {
-    // Clear all text fields
-    tfSerialNumber.setText("");
-    tfModelNumber.setText("");
-    tfEmergencyVehicleName.setText("");
-    tfPrice.setText("");
-
-    // Reset combo boxes to the first item (assuming the first item is a placeholder)
-    cbVehicleType.setSelectedIndex(0);  
-    cbAvailabilityStatus.setSelectedIndex(0); 
-    cbLocation.setSelectedIndex(0);
-}
-
-/**
- * Method to add the vehicle information to the array list.
- * This method collects validation errors, creates an EmergencyVehicle object from user inputs, checks for duplicates,
- * and adds the vehicle to the list if all validations pass.
- * @param evt the action event triggered by the button click
- */
-    private void btnAddVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVehicleActionPerformed
-    // Collect all validation errors at once
-    StringBuilder errorMessages = new StringBuilder();
-
-    EmergencyVehicle newVehicle = null; // Initialize the vehicle object
-    try {
-        newVehicle = createEmergencyVehicleFromInputs();
-    } catch (IllegalArgumentException e) {
-        // Append the specific error message from createEmergencyVehicleFromInputs
-        errorMessages.append(e.getMessage()).append("\n");
-    }
-
-    // If there are errors or the vehicle is null, show them and stop execution
-    if (errorMessages.length() > 0 || newVehicle == null) {
-        JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
-        return; // Stop further execution
-    }
-
-    // Check for duplicate serial numbers
-    for (EmergencyVehicle ev : VehicleManager.getEmergencyVehicles()) { 
-        if (ev.getSerialNumber() == newVehicle.getSerialNumber()) {
-            // Append an error message for duplicate serial number
-            errorMessages.append("A vehicle with serial number ").append(newVehicle.getSerialNumber()).append(" already exists.\n");
-            break; // Exit the loop once a duplicate is found
+        // Populate the service request column
+        CustomQueue<String> serviceRequests = emergencyService.getServiceRequests();
+        int rowIndex = 0;
+        for (String request : serviceRequests) {
+            tableModel.setValueAt(request, rowIndex++, 7); // Assuming column 7 is for service requests
         }
     }
 
-    // If there are errors after serial number check, show them and stop execution
-    if (errorMessages.length() > 0) {
-        JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
-        return; // Stop further execution
+    /**
+     * Method to create an EmergencyVehicle object using user inputs and collect
+     * all error messages in a StringBuilder. This method retrieves user inputs,
+     * validates them, collects error messages, and creates an EmergencyVehicle
+     * object if all inputs are valid.
+     *
+     * @return an EmergencyVehicle object if all inputs are valid
+     * @throws IllegalArgumentException if there are validation errors
+     */
+    private EmergencyVehicle createEmergencyVehicleFromInputs() {
+        // Initializing a StringBuilder to collect all error messages
+        StringBuilder errorMessages = new StringBuilder();
+
+        // Get inputs from text fields
+        String serialNumberText = tfSerialNumber.getText().trim();
+        String modelNumber = tfModelNumber.getText().trim();
+        String emergencyVehicleName = tfEmergencyVehicleName.getText().trim();
+        String priceText = tfPrice.getText().trim();
+
+        // Fetch vehicle type from the combo box
+        String vehicleType = (String) cbVehicleType.getSelectedItem();
+
+        // Validate vehicle type
+        String vehicleTypeError = ValidationUtil.validateEmergencyVehicleType(cbVehicleType);
+        if (vehicleTypeError != null) {
+            errorMessages.append(vehicleTypeError).append("\n");
+        }
+
+        // Fetch location from the combo box
+        String location = (String) cbLocation.getSelectedItem();
+
+        // Validate location
+        String locationError = ValidationUtil.validateLocation(cbLocation);
+        if (locationError != null) {
+            errorMessages.append(locationError).append("\n");
+        }
+
+        // Fetch availability status from the combo box
+        String availabilityStatus = (String) cbAvailabilityStatus.getSelectedItem();
+
+        // Validate availability status
+        String availabilityStatusError = ValidationUtil.validateAvailabilityStatus(cbAvailabilityStatus);
+        if (availabilityStatusError != null) {
+            errorMessages.append(availabilityStatusError).append("\n");
+        }
+
+        // Validate serial number
+        String serialValidationError = ValidationUtil.validateSerialNumber(serialNumberText);
+        if (serialValidationError != null) {
+            errorMessages.append(serialValidationError).append("\n");
+        }
+
+        // Validate model number
+        String modelNumberError = ValidationUtil.validateModelNumber(modelNumber);
+        if (modelNumberError != null) {
+            errorMessages.append(modelNumberError).append("\n");
+        }
+
+        // Validate vehicle name
+        String vehicleNameError = ValidationUtil.validateVehicleName(emergencyVehicleName);
+        if (vehicleNameError != null) {
+            errorMessages.append(vehicleNameError).append("\n");
+        }
+
+        // Validate price
+        String priceValidationError = ValidationUtil.validatePrice(priceText);
+        if (priceValidationError != null) {
+            errorMessages.append(priceValidationError).append("\n");
+        }
+
+        // If there are any validation errors, show all messages and return null
+        if (errorMessages.length() > 0) {
+            throw new IllegalArgumentException(errorMessages.toString());
+        }
+
+        // Parse validated inputs
+        int serialNumber = Integer.parseInt(serialNumberText);
+        int price = Integer.parseInt(priceText);
+
+        // Create and return the Emergency Vehicle object
+        return new EmergencyVehicle(serialNumber, modelNumber, emergencyVehicleName, vehicleType, availabilityStatus, location, price, false);
     }
 
-    // Proceed to add the vehicle only if all validations pass
-    try {
-        VehicleManager.addVehicle(newVehicle);
+//Method to clear all the textfields and reset the combobox
+    private void clearInputFields() {
+        // Clear all text fields
+        tfSerialNumber.setText("");
+        tfModelNumber.setText("");
+        tfEmergencyVehicleName.setText("");
+        tfPrice.setText("");
 
-        // Clear the input fields after successful addition
-        clearInputFields();
+        // Reset combo boxes to the first item (assuming the first item is a placeholder)
+        cbVehicleType.setSelectedIndex(0);
+        cbAvailabilityStatus.setSelectedIndex(0);
+        cbLocation.setSelectedIndex(0);
+    }
 
-        // Optionally, show a success message
-        JOptionPane.showMessageDialog(null, "Emergency Vehicle Added Successfully!");
-        populateVehicleTable();
-    } catch (Exception ex) {
-        // Handle unexpected errors during addition
-        JOptionPane.showMessageDialog(null, "An error occurred while adding the vehicle: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    
+    /**
+     * Method to add the vehicle information to the array list. This method
+     * collects validation errors, creates an EmergencyVehicle object from user
+     * inputs, checks for duplicates, and adds the vehicle to the list if all
+     * validations pass.
+     *
+     * @param evt the action event triggered by the button click
+     */
+    private void btnAddVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVehicleActionPerformed
+        // Collect all validation errors at once
+        StringBuilder errorMessages = new StringBuilder();
+
+        EmergencyVehicle newVehicle = null; // Initialize the vehicle object
+        try {
+            newVehicle = createEmergencyVehicleFromInputs();
+        } catch (IllegalArgumentException e) {
+            // Append the specific error message from createEmergencyVehicleFromInputs
+            errorMessages.append(e.getMessage()).append("\n");
+        }
+
+        // If there are errors or the vehicle is null, show them and stop execution
+        if (errorMessages.length() > 0 || newVehicle == null) {
+            JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
+            return; // Stop further execution
+        }
+
+        // Check for duplicate serial numbers
+        for (EmergencyVehicle ev : VehicleManager.getEmergencyVehicles()) {
+            if (ev.getSerialNumber() == newVehicle.getSerialNumber()) {
+                // Append an error message for duplicate serial number
+                errorMessages.append("A vehicle with serial number ").append(newVehicle.getSerialNumber()).append(" already exists.\n");
+                break; // Exit the loop once a duplicate is found
+            }
+        }
+
+        // If there are errors after serial number check, show them and stop execution
+        if (errorMessages.length() > 0) {
+            JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
+            return; // Stop further execution
+        }
+
+        // Proceed to add the vehicle only if all validations pass
+        try {
+            VehicleManager.addVehicle(newVehicle);
+
+            // Clear the input fields after successful addition
+            clearInputFields();
+
+            // Optionally, show a success message
+            JOptionPane.showMessageDialog(null, "Emergency Vehicle Added Successfully!");
+            populateVehicleTable();
+        } catch (Exception ex) {
+            // Handle unexpected errors during addition
+            JOptionPane.showMessageDialog(null, "An error occurred while adding the vehicle: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
     }    }//GEN-LAST:event_btnAddVehicleActionPerformed
 
+    /**
+     * Method to delete the vehicle information. This method deletes a vehicle
+     * from the array list based on the serial number entered by the user. It
+     * validates the input, checks if the vehicle exists, and updates the table
+     * accordingly.
+     *
+     * @param evt the action event triggered by the button click
+     */
 
-/**
- * Method to delete the vehicle information.
- * This method deletes a vehicle from the array list based on the serial number entered by the user.
- * It validates the input, checks if the vehicle exists, and updates the table accordingly.
- *
- * @param evt the action event triggered by the button click
- */
-    
     private void btnDeleteVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVehicleActionPerformed
-    String serialNumberInput = tfSerialNumber.getText().trim(); // Get the input from the user
+        String serialNumberInput = tfSerialNumber.getText().trim(); // Get the input from the user
 
-    if (serialNumberInput.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter the serial number.", "Input Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        int serialNumber = Integer.parseInt(serialNumberInput); // Convert to integer
-
-        boolean isDeleted = VehicleManager.deleteVehicle(serialNumber); // Delete vehicle from the ArrayList
-
-        if (isDeleted) {
-            // Refresh the table to reflect the deletion
-            populateVehicleTable();
-
-            JOptionPane.showMessageDialog(this, "Vehicle deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            clearInputFields(); // Clear the input fields
-        } else {
-            JOptionPane.showMessageDialog(this, "Vehicle not found. Please check the serial number.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Invalid serial number. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
-    }    }//GEN-LAST:event_btnDeleteVehicleActionPerformed
-
-/**
- * Method to update the vehicle information according to the serial number. 
- * This method validates the user inputs, creates an EmergencyVehicle object, finds and updates the vehicle in the ArrayList,
- * refreshes the table, and displays appropriate messages.
- *
- * @param evt the action event triggered by the button click
- */
-    private void btnUpdateVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateVehicleActionPerformed
-try {
-        // Validate and create a new EmergencyVehicle object from inputs
-        EmergencyVehicle updatedVehicle = createEmergencyVehicleFromInputs();
-
-        // Find and update the vehicle in the ArrayList
-        boolean isUpdated = VehicleManager.updateVehicle(updatedVehicle);
-
-        if (isUpdated) {
-            // Refresh the table
-            populateVehicleTable();
-
-            JOptionPane.showMessageDialog(this, "Vehicle details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            clearInputFields(); // Clear the input fields
-            btnUpdateVehicle.setEnabled(false); // Disable update button
-        } else {
-            JOptionPane.showMessageDialog(this, "Vehicle not found. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (IllegalArgumentException e) {
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Validation Errors", JOptionPane.ERROR_MESSAGE);
-    }    }//GEN-LAST:event_btnUpdateVehicleActionPerformed
-
-/**
- * Method to fetch the vehicle data to edit.
- 
- * This method retrieves the vehicle data based on the serial number entered by the user,
- * populates the input fields with the vehicle's details, and enables the update button.
- *
- * @param evt the action event triggered by the button click
- */
-
-    private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
-    String serialNumberInput = tfSerialNumber.getText().trim(); // Get the serial number input
-
-    if (serialNumberInput.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter the serial number to fetch the vehicle data.", "Input Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        int serialNumber = Integer.parseInt(serialNumberInput); // Convert to integer
-
-        // Find the vehicle in the ArrayList
-        EmergencyVehicle vehicleFound = VehicleManager.findVehicleBySerialNumber(serialNumber);
-
-        if (vehicleFound == null) {
-            JOptionPane.showMessageDialog(this, "Vehicle not found. Please check the serial number.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (serialNumberInput.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter the serial number.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Populate the input fields with the vehicle's details
-        tfSerialNumber.setText(String.valueOf(vehicleFound.getSerialNumber()));
-        tfModelNumber.setText(vehicleFound.getModelNumber());
-        tfEmergencyVehicleName.setText(vehicleFound.getEmergencyVehicleName());
-        cbVehicleType.setSelectedItem(vehicleFound.getVehicleType());
-        cbAvailabilityStatus.setSelectedItem(vehicleFound.getAvailabilityStatus());
-        cbLocation.setSelectedItem(vehicleFound.getCurrentLocation());
-        tfPrice.setText(String.valueOf(vehicleFound.getPrice()));
+        try {
+            int serialNumber = Integer.parseInt(serialNumberInput); // Convert to integer
 
-        // Enable the update button
-        btnUpdateVehicle.setEnabled(true);
-    } catch (NumberFormatException e) {
+            boolean isDeleted = VehicleManager.deleteVehicle(serialNumber); // Delete vehicle from the ArrayList
+
+            if (isDeleted) {
+                // Refresh the table to reflect the deletion
+                populateVehicleTable();
+
+                JOptionPane.showMessageDialog(this, "Vehicle deleted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                clearInputFields(); // Clear the input fields
+            } else {
+                JOptionPane.showMessageDialog(this, "Vehicle not found. Please check the serial number.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid serial number. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+
+    }    }//GEN-LAST:event_btnDeleteVehicleActionPerformed
+
+    /**
+     * Method to update the vehicle information according to the serial number.
+     * This method validates the user inputs, creates an EmergencyVehicle
+     * object, finds and updates the vehicle in the ArrayList, refreshes the
+     * table, and displays appropriate messages.
+     *
+     * @param evt the action event triggered by the button click
+     */
+    private void btnUpdateVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateVehicleActionPerformed
+        try {
+            // Validate and create a new EmergencyVehicle object from inputs
+            EmergencyVehicle updatedVehicle = createEmergencyVehicleFromInputs();
+
+            // Find and update the vehicle in the ArrayList
+            boolean isUpdated = VehicleManager.updateVehicle(updatedVehicle);
+
+            if (isUpdated) {
+                // Refresh the table
+                populateVehicleTable();
+
+                JOptionPane.showMessageDialog(this, "Vehicle details updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                clearInputFields(); // Clear the input fields
+                btnUpdateVehicle.setEnabled(false); // Disable update button
+            } else {
+                JOptionPane.showMessageDialog(this, "Vehicle not found. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Validation Errors", JOptionPane.ERROR_MESSAGE);
+    }    }//GEN-LAST:event_btnUpdateVehicleActionPerformed
+
+    /**
+     * Method to fetch the vehicle data to edit.
+     *
+     * This method retrieves the vehicle data based on the serial number entered
+     * by the user, populates the input fields with the vehicle's details, and
+     * enables the update button.
+     *
+     * @param evt the action event triggered by the button click
+     */
+
+    private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
+        String serialNumberInput = tfSerialNumber.getText().trim(); // Get the serial number input
+
+        if (serialNumberInput.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter the serial number to fetch the vehicle data.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int serialNumber = Integer.parseInt(serialNumberInput); // Convert to integer
+
+            if (serialNumber < 0) {
+                JOptionPane.showMessageDialog(this, "Please enter a positive serial number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Find the vehicle in the ArrayList
+            EmergencyVehicle vehicleFound = VehicleManager.findVehicleBySerialNumber(serialNumber);
+
+            if (vehicleFound == null) {
+                JOptionPane.showMessageDialog(this, "Vehicle not found. Please check the serial number.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Populate the input fields with the vehicle's details
+            tfSerialNumber.setText(String.valueOf(vehicleFound.getSerialNumber()));
+            tfModelNumber.setText(vehicleFound.getModelNumber());
+            tfEmergencyVehicleName.setText(vehicleFound.getEmergencyVehicleName());
+            cbVehicleType.setSelectedItem(vehicleFound.getVehicleType());
+            cbAvailabilityStatus.setSelectedItem(vehicleFound.getAvailabilityStatus());
+            cbLocation.setSelectedItem(vehicleFound.getCurrentLocation());
+            tfPrice.setText(String.valueOf(vehicleFound.getPrice()));
+
+            // Enable the update button
+            btnUpdateVehicle.setEnabled(true);
+        } catch (NumberFormatException e) {
+
         JOptionPane.showMessageDialog(this, "Invalid serial number. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);    }//GEN-LAST:event_btnFetchActionPerformed
     }
 
-/**
- * Method to sort the vehicle data by serial number.
- * This method sorts the vehicle list by serial number in ascending order, updates the table,
- * and displays a success message.
- *
- * @param evt the action event triggered by the button click
- */
+    /**
+     * Method to sort the vehicle data by serial number. This method sorts the
+     * vehicle list by serial number in ascending order, updates the table, and
+     * displays a success message.
+     *
+     * @param evt the action event triggered by the button click
+     */
     private void btSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSortActionPerformed
- try {
-         ArrayList<EmergencyVehicle> sortedVehicles = 
-            (ArrayList<EmergencyVehicle>) SelectionSort.sortBySerialNumber(VehicleManager.getEmergencyVehicles(), false);
+        try {
+            ArrayList<EmergencyVehicle> sortedVehicles
+                    = (ArrayList<EmergencyVehicle>) SelectionSort.sortBySerialNumber(VehicleManager.getEmergencyVehicles(), false);
 
-        // Sort the list in ascending order
-        VehicleManager.setEmergencyVehicles(sortedVehicles);
+            // Sort the list in ascending order
+            VehicleManager.setEmergencyVehicles(sortedVehicles);
 
-        // Refresh the table to display sorted data (implement `populateVehicleTable`)
-        populateVehicleTable();
+            // Refresh the table to display sorted data (implement `populateVehicleTable`)
+            populateVehicleTable();
 
-        // Success message
-        JOptionPane.showMessageDialog(this, "Vehicles sorted by Serial Number in ascending order.", "Sort Success", JOptionPane.INFORMATION_MESSAGE);
-    } catch (IllegalArgumentException e) {
-        // Handle error cases
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+            // Success message
+            JOptionPane.showMessageDialog(this, "Vehicles sorted by Serial Number in ascending order.", "Sort Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            // Handle error cases
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btSortActionPerformed
 
-/**
- * Method to add a service request for a vehicle.
- * This method validates the serial number and service request input from the user, checks if the vehicle exists,
- * and updates the service request in the table if all validations pass.
- *
- * @param evt the action event triggered by the button click
- */
- 
+    /**
+     * Method to add a service request for a vehicle. This method validates the
+     * serial number and service request input from the user, checks if the
+     * vehicle exists, and updates the service request in the table if all
+     * validations pass.
+     *
+     * @param evt the action event triggered by the button click
+     */
     private void btnAddServiceRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddServiceRequestActionPerformed
-    String serialNumberStr = tfSerialNumber.getText();
-    String request = tfServiceRequest.getText();
+        String serialNumberStr = tfSerialNumber.getText();
+        String request = tfServiceRequest.getText();
 
-    // Validation logic
-    StringBuilder errorMessages = new StringBuilder();
-    int serialNumber = -1;
+        // Validation logic
+        StringBuilder errorMessages = new StringBuilder();
+        int serialNumber = -1;
 
-    if (serialNumberStr == null || serialNumberStr.trim().isEmpty()) {
-        errorMessages.append("Serial number cannot be empty.\n");
-    } else {
-        try {
-            serialNumber = Integer.parseInt(serialNumberStr);
-            if (serialNumber < 0) {
-                errorMessages.append("Serial number must be a positive number.\n");
+        if (serialNumberStr == null || serialNumberStr.trim().isEmpty()) {
+            errorMessages.append("Serial number cannot be empty.\n");
+        } else {
+            try {
+                serialNumber = Integer.parseInt(serialNumberStr);
+                if (serialNumber < 0) {
+                    errorMessages.append("Serial number must be a positive number.\n");
+                }
+            } catch (NumberFormatException e) {
+                errorMessages.append("Serial number must be a valid number.\n");
             }
-        } catch (NumberFormatException e) {
-            errorMessages.append("Serial number must be a valid number.\n");
         }
-    }
 
-    if (request == null || request.trim().isEmpty()) {
-        errorMessages.append("Service request cannot be empty.\n");
-    } else {
-        if (request.length() < 10 || request.length() > 100) {
-            errorMessages.append("Service request must be between 10 and 100 characters.\n");
+        if (request == null || request.trim().isEmpty()) {
+            errorMessages.append("Service request cannot be empty.\n");
+        } else {
+            if (request.length() < 10 || request.length() > 100) {
+                errorMessages.append("Service request must be between 10 and 100 characters.\n");
+            }
         }
-    }
 
-    // If there are validation errors, show them and return
-    if (errorMessages.length() > 0) {
-        JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    // Find the row with the specified serial number
-    DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
-    boolean serialNumberFound = false;
-    for (int i = 0; i < tableModel.getRowCount(); i++) {
-        System.out.println("Checking row " + i + ": " + tableModel.getValueAt(i, 0));
-        if (serialNumber == 0) {
-            JOptionPane.showMessageDialog(null, "Serial number 0 is not present in the table.", "Error", JOptionPane.ERROR_MESSAGE);
+        // If there are validation errors, show them and return
+        if (errorMessages.length() > 0) {
+            JOptionPane.showMessageDialog(null, errorMessages.toString(), "Validation Errors", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        if (serialNumber == (int) tableModel.getValueAt(i, 0)) { // Assuming column 0 is for serial numbers
-            tableModel.setValueAt(request, i, 7); // Assuming column 7 is for service requests
-            serialNumberFound = true;
-            break;
+
+        // Find the row with the specified serial number
+        DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
+        boolean serialNumberFound = false;
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            System.out.println("Checking row " + i + ": " + tableModel.getValueAt(i, 0));
+            if (serialNumber == 0) {
+                JOptionPane.showMessageDialog(null, "Serial number 0 is not present in the table.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (serialNumber == (int) tableModel.getValueAt(i, 0)) { // Assuming column 0 is for serial numbers
+                tableModel.setValueAt(request, i, 7); // Assuming column 7 is for service requests
+                serialNumberFound = true;
+                break;
+            }
         }
-    }
 
-    if (!serialNumberFound) {
-        JOptionPane.showMessageDialog(null, "Serial number not found.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (!serialNumberFound) {
+            JOptionPane.showMessageDialog(null, "Serial number not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    tfSerialNumber.setText("");  // Clear the input field
-    tfServiceRequest.setText("");  // Clear the input field
+        tfSerialNumber.setText("");  // Clear the input field
+        tfServiceRequest.setText("");  // Clear the input field
 
-    JOptionPane.showMessageDialog(null, "Service Request Added Successfully!");
+        JOptionPane.showMessageDialog(null, "Service Request Added Successfully!");
 
     }//GEN-LAST:event_btnAddServiceRequestActionPerformed
 
-    
- /**
- * Method to update the table with the dispatched vehicle status.
- 
- * This method updates the dispatch status of a vehicle in the table based on the vehicle's serial number.
- *
- * @param vehicle the EmergencyVehicle object to update in the table
- */
+    /**
+     * Method to update the table with the dispatched vehicle status.
+     *
+     * This method updates the dispatch status of a vehicle in the table based
+     * on the vehicle's serial number.
+     *
+     * @param vehicle the EmergencyVehicle object to update in the table
+     */
     private void updateTableWithDispatchedVehicle(EmergencyVehicle vehicle) {
-    DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
 
-    for (int i = 0; i < tableModel.getRowCount(); i++) {
-        int serialNumber = (int) tableModel.getValueAt(i, 0); // Assuming column 0 is for serial numbers
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            int serialNumber = (int) tableModel.getValueAt(i, 0); // Assuming column 0 is for serial numbers
 
-        if (serialNumber == vehicle.getSerialNumber()) {
-            tableModel.setValueAt("Dispatched", i, 8); // Assuming column 8 is for dispatch status
-            break;
+            if (serialNumber == vehicle.getSerialNumber()) {
+                tableModel.setValueAt("Dispatched", i, 8); // Assuming column 8 is for dispatch status
+                break;
+            }
         }
     }
-}
 
-/**
- * Method to dispatch a vehicle based on the serial number.
- 
- * This method validates the serial number input, dispatches the vehicle, updates the table, and displays appropriate messages.
- *
- * @param evt the action event triggered by the button click
- */
-  
+    /**
+     * Method to dispatch a vehicle based on the serial number.
+     *
+     * This method validates the serial number input, dispatches the vehicle,
+     * updates the table, and displays appropriate messages.
+     *
+     * @param evt the action event triggered by the button click
+     */
+
     private void btnDispatchVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDispatchVehicleActionPerformed
-    int serialNumber;
-    
-    try {
-        serialNumber = Integer.parseInt(tfDispatchVehicle.getText()); // Assuming tfSerialNumber is your text field for entering serial numbers
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Please enter a valid serial number.", "Validation Error", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        String serialNumberInput = tfDispatchVehicle.getText().trim();
 
-    EmergencyVehicle vehicle = VehicleManager.findVehicleBySerialNumber(serialNumber);
+        // Validate the serial number input using ValidationUtil
+        String validationResult = ValidationUtil.validateSerialNumber(serialNumberInput);
+        if (validationResult != null) {
+            JOptionPane.showMessageDialog(null, validationResult, "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    if (vehicle != null) {
-        VehicleManager.dispatchVehicle(vehicle);  // Dispatch the vehicle
-        updateTableWithDispatchedVehicle(vehicle);  // Update the table
-        JOptionPane.showMessageDialog(null, "Vehicle dispatched successfully!");
-    } else {
-        JOptionPane.showMessageDialog(null, "Vehicle not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            int serialNumber = Integer.parseInt(serialNumberInput);
+
+            EmergencyVehicle vehicle = VehicleManager.findVehicleBySerialNumber(serialNumber);
+
+            if (vehicle != null) {
+                VehicleManager.dispatchVehicle(vehicle);  // Dispatch the vehicle
+                updateTableWithDispatchedVehicle(vehicle);  // Update the table
+                JOptionPane.showMessageDialog(null, "Vehicle dispatched successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Vehicle not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter numeric values for the serial number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+
+
     }    }//GEN-LAST:event_btnDispatchVehicleActionPerformed
-  
-  /**
- * Method to sort the vehicle data by model name.
-  
- * This method sorts the vehicle list by model name in ascending order, updates the table, and displays a success message.
- *
- * @param evt the action event triggered by the button click
- */   
-    private void btnSortByModelNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortByModelNameActionPerformed
-    VehicleManager.setEmergencyVehicles(
-        (ArrayList<EmergencyVehicle>) InsertionSort.sortByString(
-            VehicleManager.getEmergencyVehicles(),
-            false,
-            "emergencyVehicleName"
-        )
-    );
 
-    // Refresh the table to show the sorted data
-    populateVehicleTable();
-    // Display a confirmation message
-    JOptionPane.showMessageDialog(null, "Vehicles sorted by model name in ascending order.","Sort Confirmation", JOptionPane.INFORMATION_MESSAGE);
+    /**
+     * Method to sort the vehicle data by model name.
+     *
+     * This method sorts the vehicle list by model name in ascending order,
+     * updates the table, and displays a success message.
+     *
+     * @param evt the action event triggered by the button click
+     */
+    private void btnSortByModelNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortByModelNameActionPerformed
+        VehicleManager.setEmergencyVehicles(
+                (ArrayList<EmergencyVehicle>) InsertionSort.sortByString(
+                        VehicleManager.getEmergencyVehicles(),
+                        false,
+                        "emergencyVehicleName"
+                )
+        );
+
+        // Refresh the table to show the sorted data
+        populateVehicleTable();
+        // Display a confirmation message
+        JOptionPane.showMessageDialog(null, "Vehicles sorted by model name in ascending order.", "Sort Confirmation", JOptionPane.INFORMATION_MESSAGE);
             }//GEN-LAST:event_btnSortByModelNameActionPerformed
 
- /**
- * Method to sort the vehicle data by vehicle name using MergeSort.
-
- * This method sorts the vehicle list by vehicle name in ascending order using MergeSort, updates the table, and displays a success message.
- *
- * @param evt the action event triggered by the button click
- */  
+    /**
+     * Method to sort the vehicle data by vehicle name using MergeSort.
+     *
+     * This method sorts the vehicle list by vehicle name in ascending order
+     * using MergeSort, updates the table, and displays a success message.
+     *
+     * @param evt the action event triggered by the button click
+     */
     private void btnSortByVehicleNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortByVehicleNameActionPerformed
 // Sort emergency vehicles by their name in ascending order using MergeSort
-    VehicleManager.setEmergencyVehicles(
-        new ArrayList<>(
-            MergeSort.sortByVehicleName(
-                VehicleManager.getEmergencyVehicles(),
-                false // Pass 'true' for descending order
-            )
-        )
-    );
-      populateVehicleTable();
-    
+        VehicleManager.setEmergencyVehicles(
+                new ArrayList<>(
+                        MergeSort.sortByVehicleName(
+                                VehicleManager.getEmergencyVehicles(),
+                                false // Pass 'true' for descending order
+                        )
+                )
+        );
+        populateVehicleTable();
+
 // Display a confirmation message 
-JOptionPane.showMessageDialog(null, "Vehicles sorted by vehicle number in ascending order.", "Sort Confirmation", JOptionPane.INFORMATION_MESSAGE);
-    // Refresh the table to show the sorted data
+        JOptionPane.showMessageDialog(null, "Vehicles sorted by vehicle number in ascending order.", "Sort Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        // Refresh the table to show the sorted data
     populateVehicleTable();    }//GEN-LAST:event_btnSortByVehicleNameActionPerformed
 
     private void tfModelNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfModelNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfModelNumberActionPerformed
 
+
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearchActionPerformed
+        String searchKey = tfSearch.getText();
+        if (searchKey.isEmpty()) {
+            populateVehicleTable(); // Refill the table with original data
+        } else {
+            searchAndPopulateTable(searchKey);
+    }    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     private void tfSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfSearchActionPerformed
+        String searchKey = tfSearch.getText();
+        if (searchKey.isEmpty()) {
+            populateVehicleTable(); // Refill the table with original data
+        } else {
+            searchAndPopulateTable(searchKey);
+        }
+        }//GEN-LAST:event_tfSearchActionPerformed
 
- /**
- * Method to handle the logout action.
- * This method closes the HomeScreen and reopens the LoginScreen.
- */
+    private void searchAndPopulateTable(String searchKey) {
+        DefaultTableModel tableModel = (DefaultTableModel) tblEmergencyVehicles.getModel();
+        tableModel.setRowCount(0); // Clear existing data
+
+        List<EmergencyVehicle> vehicles = VehicleManager.getEmergencyVehicles();
+        List<EmergencyVehicle> searchResults = new ArrayList<>();
+
+        System.out.println("Searching for key: " + searchKey);
+
+        // Binary search algorithm for `Vehicle Type` and `Vehicle Number`
+        BinarySearch binarySearch = new BinarySearch();
+        searchResults.addAll(binarySearch.searchByType(searchKey, vehicles, 0, vehicles.size() - 1));
+        searchResults.addAll(binarySearch.searchByNumber(searchKey, vehicles, 0, vehicles.size() - 1));
+
+        // Populate the table with search results
+        for (EmergencyVehicle vehicle : searchResults) {
+            tableModel.addRow(new Object[]{
+                vehicle.getSerialNumber(),
+                vehicle.getEmergencyVehicleName(),
+                vehicle.getModelNumber(),
+                vehicle.getVehicleType(),
+                vehicle.getAvailabilityStatus(),
+                vehicle.getCurrentLocation(),
+                vehicle.getPrice(),
+                "", // Placeholder for service request
+                vehicle.isDispatched() ? "Dispatched" : "Undispatched" // Populate dispatch status
+            });
+
+            System.out.println("Added vehicle: " + vehicle.getVehicleType() + " - " + vehicle.getEmergencyVehicleName());
+        }
+
+        // Populate the service request column
+        CustomQueue<String> serviceRequests = emergencyService.getServiceRequests();
+        int rowIndex = 0;
+        for (String request : serviceRequests) {
+            if (rowIndex < tableModel.getRowCount()) {
+                tableModel.setValueAt(request, rowIndex++, 7); // Assuming column 7 is for service requests
+            } else {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Method to handle the logout action. This method closes the HomeScreen and
+     * reopens the LoginScreen.
+     */
     private void logoutAction() {
         // Close the HomeScreen
         dispose();
@@ -1435,6 +1511,7 @@ JOptionPane.showMessageDialog(null, "Vehicles sorted by vehicle number in ascend
         LoginScreen loginScreen = new LoginScreen();
         loginScreen.setVisible(true);
     }
+
     /**
      * @param args the command line arguments
      */

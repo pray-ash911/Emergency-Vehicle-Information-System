@@ -1,11 +1,11 @@
 package com.emergencyvehicle.model;
 
-/**  
+/**
  * * Prayash Rawal 
  * LMU ID: 23056551
  */
-
 public class EmergencyVehicle {
+
     private int serialNumber;
     private String modelNumber;
     private String emergencyVehicleName;
@@ -13,7 +13,7 @@ public class EmergencyVehicle {
     private String availabilityStatus;
     private String currentLocation;
     private int price;
-    
+
     private boolean isDispatched; // Indicates if the vehicle is dispatched
     private boolean hasServiceRequest; // Indicates if there's a pending service request
 
@@ -135,16 +135,16 @@ public class EmergencyVehicle {
     // Override toString for display
     @Override
     public String toString() {
-        return "EmergencyVehicle{" +
-                "serialNumber=" + serialNumber +
-                ", emergencyVehicleName='" + emergencyVehicleName + '\'' +
-                ", modelNumber='" + modelNumber + '\'' +
-                ", vehicleType='" + vehicleType + '\'' +
-                ", availabilityStatus='" + availabilityStatus + '\'' +
-                ", currentLocation='" + currentLocation + '\'' +
-                ", price=" + price +
-                ", isDispatched=" + isDispatched +
-                ", hasServiceRequest=" + hasServiceRequest +
-                '}';
+        return "EmergencyVehicle{"
+                + "serialNumber=" + serialNumber
+                + ", emergencyVehicleName='" + emergencyVehicleName + '\''
+                + ", modelNumber='" + modelNumber + '\''
+                + ", vehicleType='" + vehicleType + '\''
+                + ", availabilityStatus='" + availabilityStatus + '\''
+                + ", currentLocation='" + currentLocation + '\''
+                + ", price=" + price
+                + ", isDispatched=" + isDispatched
+                + ", hasServiceRequest=" + hasServiceRequest
+                + '}';
     }
 }

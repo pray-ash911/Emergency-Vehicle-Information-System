@@ -6,11 +6,12 @@ package com.emergencyvehicle.model;
 
 /**
  * User class for managing user credentials including username and password.
- * 
- * Prayash Rawal
+ *
+ * Prayash Rawal 
  * LMU ID: 23056551
  */
 public class User {
+
     private String username; // The username of the user.
     private String password; // The password of the user.
 

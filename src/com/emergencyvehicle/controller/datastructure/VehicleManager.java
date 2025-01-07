@@ -1,4 +1,3 @@
-
 package com.emergencyvehicle.controller.datastructure;
 
 import com.emergencyvehicle.model.EmergencyVehicle;
@@ -8,11 +7,12 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
- * VehicleManager class for managing emergency vehicles, dispatch records, dispatched vehicles,
- * and service requests.
- *
- * Prayash Rawal
+ * Prayash Rawal 
  * LMU ID: 23056551
+ */
+/**
+ * * VehicleManager class for managing emergency vehicles, dispatch records,
+ * dispatched vehicles, and service requests.
  */
 public class VehicleManager {
 
@@ -21,14 +21,13 @@ public class VehicleManager {
     private static LinkedList<String> dispatchRecords = new LinkedList<>();
     private static Stack<EmergencyVehicle> dispatchedVehicles = new Stack<>();
     private static Queue<String> serviceRequests = new LinkedList<>();
-
     static {
         // Pre-populate with 5 vehicles
-        emergencyVehicles.add(new EmergencyVehicle(1, "A100", "Ambulance Model X", "Ambulance", "Available", "Manamaiju", 5000,false));
-        emergencyVehicles.add(new EmergencyVehicle(2, "F200", "Fire Truck Model Y", "Fire Truck", "Unavailable", "Kamalpokhari", 7500,true));
-        emergencyVehicles.add(new EmergencyVehicle(3, "P300", "Police Car Model Z", "Police Car", "Available", "Baneshwor", 3000,false));
-        emergencyVehicles.add(new EmergencyVehicle(4, "A150", "Ambulance Model A", "Ambulance", "Available", "Ratnapark", 5200,true));
-        emergencyVehicles.add(new EmergencyVehicle(5, "F250", "Fire Truck Model B", "Fire Truck", "Unavailable", "Thamel", 8000,false));
+        emergencyVehicles.add(new EmergencyVehicle(1, "A100", "Ambulance Model X", "Ambulance", "Available", "Manamaiju", 5000, false));
+        emergencyVehicles.add(new EmergencyVehicle(2, "A150", "Ambulance Model A", "Ambulance", "Unavailable", "Kamalpokhari", 7500, true));
+        emergencyVehicles.add(new EmergencyVehicle(3, "F250", "Fire Truck Model B ", "Fire Truck", "Available", "Baneshwor", 3000, false));
+        emergencyVehicles.add(new EmergencyVehicle(4, "P350", "Police Car Model Z", "Police Car", "Available", "Ratnapark", 5200, true));
+        emergencyVehicles.add(new EmergencyVehicle(5, "P300", "Police Car Model Z", "Police Car", "Unavailable", "Thamel", 8000, false));
     }
 
     /**
@@ -88,7 +87,8 @@ public class VehicleManager {
      * Method to find a vehicle by serial number
      *
      * @param serialNumber the serial number of the vehicle to be found
-     * @return the emergency vehicle with the specified serial number, or null if not found
+     * @return the emergency vehicle with the specified serial number, or null
+     * if not found
      */
     public static EmergencyVehicle findVehicleBySerialNumber(int serialNumber) {
         for (EmergencyVehicle vehicle : emergencyVehicles) {

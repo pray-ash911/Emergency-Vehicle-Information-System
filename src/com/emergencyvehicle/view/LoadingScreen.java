@@ -10,16 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 /**
- * LoadingScreen class for displaying a loading screen with progress bar.
- * 
- * Prayash Rawal
- * LMU ID: 23056551
- * 
- * The LoadingScreen class shows a progress bar that updates over time and switches to the LoginScreen once loading is complete.
+ * Prayash Rawal LMU ID: 23056551
+ */
+/**
+ * The LoadingScreen class shows a progress bar that updates over time and
+ * switches to the LoginScreen once loading is complete.
  */
 public class LoadingScreen extends javax.swing.JFrame {
-     private Timer timer; // Timer to update progress bar
-     private int progress = 0; // Progress value for the loading bar
+
+    private Timer timer; // Timer to update progress bar
+    private int progress = 0; // Progress value for the loading bar
 
     /**
      * Creates new form LoadingScreenS
@@ -30,7 +30,6 @@ public class LoadingScreen extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         startLoading();
         this.setLocationRelativeTo(null);
-
 
     }
 
@@ -98,13 +97,13 @@ public class LoadingScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /**
      * Starts the loading process by updating the progress bar and label.
      */
     private void startLoading() {
         timer = new Timer(50, new ActionListener() { // Update every 50ms
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 progress += 2; // Increment progress
@@ -112,7 +111,7 @@ public class LoadingScreen extends javax.swing.JFrame {
                 lblLoadingScreen.setText("Loading... " + progress + "%");
 
                 // Check if loading is complete
-                if (progress >= 100) {
+                if (progress >= 300) {
                     timer.stop(); // Stop the timer
                     switchToLoginScreen(); // Switch to LoginScreen
                 }
@@ -120,11 +119,13 @@ public class LoadingScreen extends javax.swing.JFrame {
         });
         timer.start(); // Start the timer
     }
+
     // Switch to the LoginScreen
     private void switchToLoginScreen() {
         this.dispose(); // Close the LoadingScreen
         new LoginScreen().setVisible(true); // Open the LoginScreen
     }
+
     /**
      * @param args the command line arguments
      */
